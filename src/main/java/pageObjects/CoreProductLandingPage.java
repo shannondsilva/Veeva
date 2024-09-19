@@ -23,6 +23,11 @@ public class CoreProductLandingPage {
     @FindBy(xpath="//a[@href='https://shop.warriors.com/']//following-sibling::nav//a[text()=\"Men's\"]")
     WebElement CP_ShopMenu_Mens;
 
+    @FindBy(xpath="//button[@id='onetrust-accept-btn-handler']")
+    WebElement CP_OneTrustCookieAccept;
+
+    @FindBy(xpath="//div[@role='dialog']//div[text()='x']")
+    WebElement CP_CancelPopup;
 
     public WebElement getCP_Logo() {
         return CP_Logo;
@@ -44,10 +49,29 @@ public class CoreProductLandingPage {
         return CP_ShopMenu_Mens;
     }
 
-    //This method needs to compulsory be called immediately after initiating the webDriver
+    public WebElement getCP_OneTrustCookieAccept() {
+        return CP_OneTrustCookieAccept;
+    }
+
+    public WebElement getCP_CancelPopup() {
+        return CP_CancelPopup;
+    }
+
     public void setDriver() {
         this.driver = Constants.driver;
         PageFactory.initElements(Constants.driver,this);
+    }
+
+    public void handleCookiesAndPopups() throws Exception {
+            String isVisibleCookie = Constants.key.verifyElementProperties(getCP_OneTrustCookieAccept(),"visible");
+            String isVisiblePopup = Constants.key.verifyElementProperties(getCP_CancelPopup(),"visible");
+            if(isVisibleCookie.equals("PASSED")){
+                Constants.key.click(getCP_OneTrustCookieAccept(),"");
+            }
+            if(isVisiblePopup.equals("PASSED")){
+                Constants.key.click(getCP_CancelPopup(),"");
+            }
+
     }
 
 

@@ -3,6 +3,7 @@ package com.example.utils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.logging.LogCombiner;
 import pageObjects.CoreProductLandingPage;
+import pageObjects.MensShoppingMenu;
 
 import java.util.Properties;
 
@@ -17,5 +18,6 @@ public class Constants {
     public static Reusables key;
 
     public static CoreProductLandingPage CP_POM = new CoreProductLandingPage();
+    public static MensShoppingMenu CP_ShopMen_POM = new MensShoppingMenu();
 
 }

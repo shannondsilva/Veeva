@@ -1,0 +1,136 @@
+package pageObjects;
+
+import com.example.utils.Constants;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.logging.LogCombiner;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class MensShoppingMenu {
+    WebDriver driver;
+
+    @FindBy(xpath = "//button//i[@class='icon icon-close-alt']")
+    WebElement CP_Mens_ClosePopup;
+
+    @FindBy(xpath = "//li//span[text()='Jackets']")
+    WebElement CP_Mens_Jacket_RadioBtn;
+
+    @FindBy(xpath = "(//li[@class='simple-list hide-for-large']/div)[1]")
+    WebElement CP_Mens_TotalPages;
+
+    @FindBy(xpath = "(//li[@class='next-page']/a)[1]")
+    WebElement CP_Mens_NextPage;
+
+    @FindBy(xpath = "//div[@class='product-card row']")
+    List<WebElement> CP_Mens_ProductCards;
+
+    @FindBy(xpath = "//span[@class='lowest']//span[@class='money-value']")
+    List<WebElement> CP_Mens_ProductPrices;
+
+    @FindBy(xpath = "//div[@class='product-card-title']/a")
+    List<WebElement> CP_Mens_ProductTitles;
+
+    @FindBy(xpath = "//div[@class='product-vibrancy top-seller-vibrancy']/span")
+    List<WebElement> CP_Mens_ProductMessage;
+
+    public List<WebElement> getCP_Mens_ProductMessage() {
+        return CP_Mens_ProductMessage;
+    }
+
+    public WebElement getCP_Mens_Jacket_RadioBtn() {
+        return CP_Mens_Jacket_RadioBtn;
+    }
+
+    public WebElement getCP_Mens_TotalPages() {
+        return CP_Mens_TotalPages;
+    }
+
+    public WebElement getCP_Mens_NextPage() {
+        return CP_Mens_NextPage;
+    }
+
+    public List<WebElement> getCP_Mens_ProductCards() {
+        return CP_Mens_ProductCards;
+    }
+
+    public List<WebElement> getCP_Mens_ProductPrices() {
+        return CP_Mens_ProductPrices;
+    }
+
+    public List<WebElement> getCP_Mens_ProductTitles() {
+        return CP_Mens_ProductTitles;
+    }
+
+    public WebElement getCP_Mens_ClosePopup() {
+        return CP_Mens_ClosePopup;
+    }
+
+    public void setDriver() {
+        this.driver = Constants.driver;
+        PageFactory.initElements(Constants.driver, this);
+    }
+
+    public void saveProductListData() throws Exception {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("productDetails.txt"))) {
+            int numberOfProducts = CP_Mens_ProductCards.size();
+            boolean isEnabled=true;
+            while(isEnabled) {
+                Constants.key.KeyboardAction(getCP_Mens_NextPage(),"end");
+                Constants.key.KeyboardAction(getCP_Mens_NextPage(),"Home");
+                isEnabled = Constants.key.verifyElementProperties(getCP_Mens_NextPage(), "enabled").equals("PASSED");
+                numberOfProducts = CP_Mens_ProductCards.size();
+                for (int i = 0; i < numberOfProducts; i++) {
+                    String title = CP_Mens_ProductTitles.get(i).getText();
+                    String price = CP_Mens_ProductPrices.get(i).getText();
+                    String specialMessage = "";
+                    try {
+                        specialMessage = CP_Mens_ProductMessage.get(i).getText();
+                    } catch (Exception e) {
+                        specialMessage = "<No Special Message>";
+                    }
+                    // Write each product's details to the file
+                    System.out.println("=======================================================================================================");
+                    writer.write("Product Title: " + title);
+                    writer.newLine();
+                    writer.write("Product Price: " + price);
+                    writer.newLine();
+                    writer.write("Product Message: " + specialMessage);
+                    writer.newLine();
+                    writer.write("------------------------------");
+                    writer.newLine();
+                    System.out.println("======================================================================================================="+i);
+                }
+                Constants.key.click(getCP_Mens_NextPage(),"");
+                // Re-fetch the elements after page reload
+                CP_Mens_ProductCards = driver.findElements(By.xpath("//div[@class='product-card row']"));
+                CP_Mens_ProductPrices = driver.findElements(By.xpath("//span[@class='lowest']//span[@class='money-value']"));
+                CP_Mens_ProductTitles = driver.findElements(By.xpath("//div[@class='product-card-title']/a"));
+                CP_Mens_ProductMessage = driver.findElements(By.xpath("//div[@class='product-vibrancy top-seller-vibrancy']/span"));
+
+            }
+            System.out.println("Product details successfully written to the file.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void handleCookiesAndPopups() throws Exception {
+        String isVisibleCookie = Constants.key.verifyElementProperties(getCP_Mens_ClosePopup(),"visible");
+        Constants.key.visibleWaitCondition(getCP_Mens_ClosePopup(),"visible");
+        if(isVisibleCookie.equals("PASSED")){
+            Constants.key.click(getCP_Mens_ClosePopup(),"");
+        }
+    }
+
+
+}

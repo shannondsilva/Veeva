@@ -15,6 +15,7 @@ import io.cucumber.java.en.When;
 import io.cucumber.java.eo.Se;
 import io.cucumber.java.it.Ma;
 import io.cucumber.java.sl.In;
+import org.checkerframework.checker.units.qual.C;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.TakesScreenshot;
@@ -29,6 +30,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.*;
+import java.lang.invoke.SwitchPoint;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -866,28 +868,48 @@ public class stepDefination  {
     }
 
     @When("I am on the CP Home Page and do some quick element loaded validations")
-    public void iAmOnTheCPHomePageAndDoSomeQuickElementLoadedValidations() {
+    public void iAmOnTheCPHomePageAndDoSomeQuickElementLoadedValidations() throws Exception {
 
         Constants.CP_POM.setDriver();
+        Constants.CP_POM.handleCookiesAndPopups();
         Assert.assertEquals(Constants.key.visibleWaitCondition(Constants.CP_POM.getCP_MainMenuBar(),"3"),"PASSED","ERROR >> Main menu NOT visible");
         Assert.assertEquals(Constants.key.visibleWaitCondition(Constants.CP_POM.getCP_SubMenuBar(),"3"),"PASSED","ERROR >> Sub menu NOT visible");
 
     }
 
     @And("I navigate to the Shop Menu and select {string} category")
-    public void iNavigateToTheShopMenuAndSelectCategory(String shopMenuCategory) {
-        
-    }
+    public void iNavigateToTheShopMenuAndSelectCategory(String shopMenuCategory) throws Exception {
 
+        Assert.assertEquals(Constants.key.MouseFunctions(Constants.CP_POM.getCP_ShopMenu(),"MoveToElement"),"PASSED","ERROR >> MoveToElement failed");
 
-    class singleLinkedList{
-        int val;
-        singleLinkedList node;
-
-        singleLinkedList(int i){
-            this.val = i;
+        switch (shopMenuCategory){
+            case "Men's":
+                Assert.assertEquals(Constants.key.click(Constants.CP_POM.getCP_ShopMenu_Mens(),""),"PASSED","ERROR >> getCP_ShopMenu_Mens clicked failed");
+                break;
+            case "Women's":
+                Assert.assertEquals(Constants.key.click(Constants.CP_POM.getCP_ShopMenu_Mens(),""),"PASSED","ERROR >> getCP_ShopMenu_Mens clicked failed");
+                break;
+            default:
+                LogCapture.error("Incorrect Shop menu cart provided");
         }
 
 
+    }
+
+
+    @And("I find all {string} from all paginated pages")
+    public void iFindAllFromAllPaginatedPages(String productType) throws Throwable {
+        Constants.CP_ShopMen_POM.setDriver();
+        String mensPrdPgTitle=Constants.config.getProperty("CP_MensProductPageTitle");
+        Assert.assertEquals(Constants.key.switchToWindow(mensPrdPgTitle),"PASSED","ERROR >> Child window switch failed");
+        Constants.CP_ShopMen_POM.handleCookiesAndPopups();
+        Assert.assertEquals(Constants.key.visibleWaitCondition(Constants.CP_ShopMen_POM.getCP_Mens_Jacket_RadioBtn(),"4"),"PASSED","ERROR >> getCP_Mens_Jacket_RadioBtn visibleWaitCondition failed");
+        Assert.assertEquals(Constants.key.javascrpiptScroll(Constants.CP_ShopMen_POM.getCP_Mens_Jacket_RadioBtn(),""),"PASSED","ERROR >> getCP_Mens_Jacket_RadioBtn javascrpiptScroll failed");
+        Assert.assertEquals(Constants.key.KeyboardAction(Constants.CP_ShopMen_POM.getCP_Mens_NextPage(),"upArrow"),"PASSED","ERROR >> getCP_Mens_Jacket_RadioBtn KeyboardAction failed");
+        Assert.assertEquals(Constants.key.KeyboardAction(Constants.CP_ShopMen_POM.getCP_Mens_NextPage(),"upArrow"),"PASSED","ERROR >> getCP_Mens_Jacket_RadioBtn KeyboardAction failed");
+        Assert.assertEquals(Constants.key.KeyboardAction(Constants.CP_ShopMen_POM.getCP_Mens_NextPage(),"upArrow"),"PASSED","ERROR >> getCP_Mens_Jacket_RadioBtn KeyboardAction failed");
+        Assert.assertEquals(Constants.key.KeyboardAction(Constants.CP_ShopMen_POM.getCP_Mens_NextPage(),"upArrow"),"PASSED","ERROR >> getCP_Mens_Jacket_RadioBtn KeyboardAction failed");
+        Assert.assertEquals(Constants.key.click(Constants.CP_ShopMen_POM.getCP_Mens_Jacket_RadioBtn(),""),"PASSED","ERROR >> getCP_Mens_Jacket_RadioBtn clicked failed");
+        Constants.CP_ShopMen_POM.saveProductListData();
     }
 }

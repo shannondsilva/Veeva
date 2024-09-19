@@ -1,5 +1,7 @@
 package com.example.utils;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
@@ -26,7 +28,7 @@ public class Base extends Reusables {
         InputStream inputStream2 = new FileInputStream(System.getProperty("user.dir")+ File.separator+"src"+File.separator+"main"+File.separator+"resources"+File.separator+"MarsApp.properties");
         Constants.MarsApp = new Properties();
         Constants.MarsApp.load(inputStream2);
-
+        
     }
 
     @After
