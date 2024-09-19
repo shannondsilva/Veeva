@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Cucumber" time="11.519" tests="1" skipped="0" failures="0" errors="0">
+<testcase classname="Testcases for checks on the Core Product functionality" name="Extract Jacket details from the Shop Menu - #1.1" time="11.247">
+<system-out><![CDATA[
+Given User opens the "browser" and loads the "CP_URL".......................passed
+When I am on the CP Home Page and do some quick element loaded validations..passed
+And I navigate to the Shop Menu and select "Men's" category.................passed
+]]></system-out>
+</testcase>
+</testsuite>

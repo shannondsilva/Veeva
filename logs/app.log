@@ -1,0 +1,17 @@
+2024-09-19 12:25:43 DEBUG TestNG:82 - suiteXmlPath: "C:\Users\shann\AppData\Local\JetBrains\IdeaIC2022.1\temp-testng-customsuite.xml"
+2024-09-19 12:25:44 INFO  Utils:112 - [TestNG] Running:
+  C:\Users\shann\AppData\Local\JetBrains\IdeaIC2022.1\temp-testng-customsuite.xml
+
+2024-09-19 12:25:46 INFO  Reusables:26 - openBrowser method called
+2024-09-19 12:25:46 DEBUG WebDriverManager:227 - Using WebDriverManager 5.9.1
+2024-09-19 12:25:46 DEBUG ResolutionCache:186 - Resolution chrome=128 in cache (valid until 12:34:55 19/09/2024 IST)
+2024-09-19 12:25:46 DEBUG ResolutionCache:186 - Resolution chrome128=128.0.6613.137 in cache (valid until 09:10:31 20/09/2024 IST)
+2024-09-19 12:25:46 INFO  WebDriverManager:1220 - Using chromedriver 128.0.6613.137 (resolved driver for Chrome 128)
+2024-09-19 12:25:46 DEBUG WebDriverManager:1179 - Driver chromedriver 128.0.6613.137 found in cache
+2024-09-19 12:25:46 INFO  WebDriverManager:1282 - Exporting webdriver.chrome.driver as C:\Users\shann\.cache\selenium\chromedriver\win64\128.0.6613.137\chromedriver.exe
+2024-09-19 12:25:53 INFO  Reusables:39 - openBrowser method executed
+2024-09-19 12:25:53 INFO  Reusables:89 - visibleWaitCondition method called
+2024-09-19 12:25:56 INFO  Reusables:92 - visibleWaitCondition method executed
+2024-09-19 12:25:56 INFO  Reusables:89 - visibleWaitCondition method called
+2024-09-19 12:25:56 INFO  Reusables:92 - visibleWaitCondition method executed
+2024-09-19 12:25:57 INFO  Reusables:38 - Scenario Name --> Extract Jacket details from the Shop Menu

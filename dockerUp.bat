@@ -1,0 +1,1 @@
+docker compose -f docker-compose.yml up --scale chrome=5 --scale edge=5 >>output.txt
