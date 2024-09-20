@@ -48,7 +48,7 @@
 		<!-- nav-right -->
 		<ul id='nav-mobile' class='right hide-on-med-and-down nav-right'>
 			<a href='#!'>
-			<span class='label blue darken-3 suite-start-time'>Sep 19, 2024 10:27:19 PM</span>
+			<span class='label blue darken-3 suite-start-time'>Sep 20, 2024 01:21:30 am</span>
 			</a>
 		</ul>
 	</div>
@@ -63,7 +63,7 @@
 				<i class='material-icons'>warning</i> Status
 				</a>
 				<ul id='tests-toggle' class='dropdown-content'>
-										<li status='warning'><a href='#!'>Warning <i class='material-icons orange-text'>warning</i></a></li>
+										<li status='pass'><a href='#!'>Pass <i class='material-icons green-text'>check_circle</i></a></li>
 					<li class='divider'></li>
 					<li status='clear' clear='true'><a href='#!'>Clear Filters <i class='material-icons'>clear</i></a></li>
 				</ul>
@@ -107,8 +107,8 @@
                     <canvas id='parent-analysis' width='90' height='70'></canvas>
                 </div>
                 <div class='block text-small'>
-                    <span class='tooltipped' data-position='top' data-tooltip='$0%'>
-                    <span class='strong'>0</span> tests passed</span>
+                    <span class='tooltipped' data-position='top' data-tooltip='$100%'>
+                    <span class='strong'>1</span> tests passed</span>
                 </div>
                 <div class='block text-small'>
                     <span class='strong tooltipped' data-position='top' data-tooltip='0%'>
@@ -133,18 +133,19 @@
 	<div class='subview-left left'>
 		<div class='view-summary'>
 			<ul id='test-collection' class='test-collection'>
-				<li class='test displayed active  warning' status='warning' bdd='false' test-id='8'>
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='1'>
 					<div class='test-heading'>
-						<span class='test-name'>Product Details Report</span>
-						<span class='test-time'>Sep 19, 2024 10:27:29 PM</span>
-						<span class='test-status right warning'>Warning</span>
+						<span class='test-name'>Test Execution</span>
+						<span class='test-time'>Sep 20, 2024 01:21:30 am</span>
+						<span class='test-status right pass'>Pass</span>
 					</div>
 					<div class='test-content hide'>
 <div class='test-time-info'>
-	<span class='label start-time'>Sep 19, 2024 10:27:29 PM</span>
-	<span class='label end-time'>Sep 19, 2024 10:27:29 PM</span>
-	<span class='label time-taken grey lighten-1 white-text'>00 00 00.001</span>
+	<span class='label start-time'>Sep 20, 2024 01:21:30 am</span>
+	<span class='label end-time'>Sep 20, 2024 01:21:37 am</span>
+	<span class='label time-taken grey lighten-1 white-text'>00 00 06.185</span>
 </div>
+<div class='test-desc'>Automated test run with Extent Report integration </div>
 <div class='test-steps'>
 	<table class='bordered table-results'>
 		<thead>
@@ -155,11 +156,18 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr class='log' status='warning'>			
-				<td class='status warning' title='Warning' alt='Warning'><i class='material-icons'> warning </i></td>
-				<td class='timestamp'>10:27:29 PM</td>
+			<tr class='log' status='info'>			
+				<td class='status info' title='Info' alt='Info'><i class='material-icons'> info_outline </i></td>
+				<td class='timestamp'>1:21:37 am</td>
 				<td class='step-details'>
-						productDetails.txt file not found.
+						Product Details file generated.
+				</td>
+			</tr>
+			<tr class='log' status='info'>			
+				<td class='status info' title='Info' alt='Info'><i class='material-icons'> info_outline </i></td>
+				<td class='timestamp'>1:21:37 am</td>
+				<td class='step-details'>
+						<a href='C:\Users\shann\IdeaProjects\Veeva_Shannon_Sub\productDetails.txt' download>Click here to download the product details file</a>
 				</td>
 			</tr>
 		</tbody>
@@ -210,35 +218,19 @@
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Start
-					<div class='panel-lead'>Sep 19, 2024 10:27:19 PM</div>
+					<div class='panel-lead'>Sep 20, 2024 01:21:30 am</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 			 		End
-			 		<div class='panel-lead'>Sep 19, 2024 10:27:29 PM</div>
+			 		<div class='panel-lead'>Sep 20, 2024 01:21:37 am</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Time Taken
-					<div class='panel-lead'>00 00 10.455</div>
-				</div>
-			</div>
-			<div class='col s4'>
-				<div class='card-panel dashboard-environment'>
-					<span class='right label cyan white-text'>Environment</span><p>&nbsp;</p>
-					
-					<table>
-						<tr>
-							<th>Name</th>
-							<th>Value</th>
-						</tr>
-							<tr>
-								<td>Tester</td>
-								<td>Shannon</td>
-							</tr>
-					</table>
+					<div class='panel-lead'>00 00 06.198</div>
 				</div>
 			</div>
 		</div>
@@ -250,11 +242,11 @@
 		<script>
 			var statusGroup = {
                 parentCount: 1,
-				passParent: 0,
+				passParent: 1,
 				failParent: 0,
 				fatalParent: 0,
 				errorParent: 0,
-				warningParent: 1,
+				warningParent: 0,
 				skipParent: 0,
 				childCount: 0,
 				passChild: 0,
@@ -277,7 +269,7 @@
 		
 		<script>
 			var timeline = {
-			        "Product Details Report":0.001
+			        "Test Execution":6.185
 			};
 		</script>
 		

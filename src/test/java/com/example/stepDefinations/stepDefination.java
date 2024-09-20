@@ -1,5 +1,8 @@
 package com.example.stepDefinations;
 
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter;
 import com.example.utils.*;
 import com.fasterxml.jackson.core.exc.StreamWriteException;
 import com.fasterxml.jackson.databind.DatabindException;
@@ -911,5 +914,22 @@ public class stepDefination  {
         Assert.assertEquals(Constants.key.KeyboardAction(Constants.CP_ShopMen_POM.getCP_Mens_NextPage(),"upArrow"),"PASSED","ERROR >> getCP_Mens_Jacket_RadioBtn KeyboardAction failed");
         Assert.assertEquals(Constants.key.click(Constants.CP_ShopMen_POM.getCP_Mens_Jacket_RadioBtn(),""),"PASSED","ERROR >> getCP_Mens_Jacket_RadioBtn clicked failed");
         Constants.CP_ShopMen_POM.saveProductListData();
+    }
+
+    @Then("I store each Price, Title, and Top Seller message of the {string} and {string} in a text file")
+    public void iStoreEachPriceTitleAndTopSellerMessageOfTheAndInATextFile(String ShopMenuCategory, String ProductType) throws Exception {
+        if(ShopMenuCategory.equalsIgnoreCase("Men's") && ProductType.equalsIgnoreCase("Jackets")){
+            Constants.CP_ShopMen_POM.logProductListDataToFile();
+        }
+        else if(ShopMenuCategory.equalsIgnoreCase("Women's") && ProductType.equalsIgnoreCase("Jackets")){
+            //Add your criteria here
+        }
+    }
+
+    @And("I attach the generated text file to the test report")
+    public void iAttachTheGeneratedTextFileToTheTestReport() {
+        ExtentTest test = ExtentCucumberAdapter.getCurrentStep();
+        test.log(Status.INFO, "Attached file: <a href='" +System.getProperty("user.dir")+ File.separator+"test-output"+File.separator+"logDump"+File.separator+"testLogs"+Constants.genericString+".txt"+ "'>Download productDetails.txt</a>");
+
     }
 }

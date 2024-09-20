@@ -8,9 +8,13 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.*;
 
+import java.lang.invoke.SwitchPoint;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.*;
 
@@ -29,7 +33,11 @@ public class Reusables {
             options.addArguments("--no-proxy-server");
             options.setExperimentalOption("prefs", prefs);
 
-            Constants.driver = new ChromeDriver(options);
+            switch (data.toLowerCase()) {
+                case "chrome" -> Constants.driver = new ChromeDriver(options);
+                case "edge" -> Constants.driver = new EdgeDriver();
+                case "firefox" -> Constants.driver = new FirefoxDriver();
+            }
             Constants.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
             Constants.driver.manage().window().maximize();
             Constants.driver.get(value);
@@ -332,6 +340,19 @@ public class Reusables {
             return Constants.PassedBlock;
         } catch (Exception e) {
             LogCapture.error("InvisibleWaitCondition method failed");
+            return Constants.FailedBlock;
+        }
+    }
+
+    public String returnDDMMYYSSString() {
+        try {
+            LogCapture.info("returnDDMMYYSSString method called");
+            SimpleDateFormat formatter = new SimpleDateFormat("ddMMyyssSSS");
+            Date now = new Date();
+            LogCapture.info("returnDDMMYYSSString method executed");
+            return formatter.format(now);
+        } catch (Exception e) {
+            LogCapture.error("returnDDMMYYSSString method failed");
             return Constants.FailedBlock;
         }
     }

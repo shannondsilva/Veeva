@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="VeevaAssignment_Shannon" />
+        <module name="Veeva_Shannon_Sub" />
         <module name="Veeva" />
         <module name="testMVN" />
         <module name="VeevaAssig" />

@@ -9,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
@@ -80,15 +81,16 @@ public class MensShoppingMenu {
     }
 
     public void saveProductListData() throws Exception {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("productDetails.txt"))) {
-            int numberOfProducts = CP_Mens_ProductCards.size();
+        Constants.genericString = Constants.key.returnDDMMYYSSString();
+        try {
+            int productCounter = 0;
             boolean isEnabled=true;
             while(isEnabled) {
-                Constants.key.KeyboardAction(getCP_Mens_NextPage(),"end");
-                Constants.key.KeyboardAction(getCP_Mens_NextPage(),"Home");
                 isEnabled = Constants.key.verifyElementProperties(getCP_Mens_NextPage(), "enabled").equals("PASSED");
-                numberOfProducts = CP_Mens_ProductCards.size();
+                int numberOfProducts = CP_Mens_ProductCards.size();
+                System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx "+numberOfProducts);
                 for (int i = 0; i < numberOfProducts; i++) {
+                    productCounter++;
                     String title = CP_Mens_ProductTitles.get(i).getText();
                     String price = CP_Mens_ProductPrices.get(i).getText();
                     String specialMessage = "";
@@ -99,14 +101,10 @@ public class MensShoppingMenu {
                     }
                     // Write each product's details to the file
                     System.out.println("=======================================================================================================");
-                    writer.write("Product Title: " + title);
-                    writer.newLine();
-                    writer.write("Product Price: " + price);
-                    writer.newLine();
-                    writer.write("Product Message: " + specialMessage);
-                    writer.newLine();
-                    writer.write("------------------------------");
-                    writer.newLine();
+                    Constants.genericList.add("--------------Below Product "+productCounter+"-----------------------------------");
+                    Constants.genericList.add("Product Title: " + title);
+                    Constants.genericList.add("Product Price: " + price);
+                    Constants.genericList.add("Product Message: " + specialMessage);
                     System.out.println("======================================================================================================="+i);
                 }
                 Constants.key.click(getCP_Mens_NextPage(),"");
@@ -115,13 +113,28 @@ public class MensShoppingMenu {
                 CP_Mens_ProductPrices = driver.findElements(By.xpath("//span[@class='lowest']//span[@class='money-value']"));
                 CP_Mens_ProductTitles = driver.findElements(By.xpath("//div[@class='product-card-title']/a"));
                 CP_Mens_ProductMessage = driver.findElements(By.xpath("//div[@class='product-vibrancy top-seller-vibrancy']/span"));
-
             }
             System.out.println("Product details successfully written to the file.");
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+    }
+
+    public void logProductListDataToFile() throws Exception {
+        Constants.genericString = Constants.key.returnDDMMYYSSString();
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(System.getProperty("user.dir") + File.separator + "test-output" + File.separator + "logDump" + File.separator + "testLogs" + Constants.genericString + ".txt"))) {
+            Constants.genericList.stream().forEach(element -> {
+                try {
+                    writer.write(element);
+                    writer.newLine();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void handleCookiesAndPopups() throws Exception {
