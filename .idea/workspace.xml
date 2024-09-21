@@ -6,35 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9337e64d-04e2-4223-bb9d-8b60a5a8b503" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CustRef1721365546265.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Demo.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dockerDown.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/app.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/app.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/outputDown.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/productDetails.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/utils/Reusables.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/utils/Reusables.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/utils/StaticVariables.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pageObjects/MensShoppingMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pageObjects/MensShoppingMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/MarsApp.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/featureFileDirectory/CoreProdutTests.feature" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/featureFileDirectory/CoreProdutTests.feature" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/runner/testNGtestRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/runner/testNGtestRunner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/stepDefinations/stepDefination.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/stepDefinations/stepDefination.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/MarsApp.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/utils/Reusables.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/utils/Reusables.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/utils/StaticVariables.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pageObjects/MensShoppingMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pageObjects/MensShoppingMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/cucumber-reports/cucumber.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/cucumber-reports/cucumber.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/cucumber-reports/cucumber.json" beforeDir="false" afterPath="$PROJECT_DIR$/target/cucumber-reports/cucumber.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/cucumber-reports/cucumber.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/cucumber-reports/cucumber.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/example/runner/testNGtestRunner.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/example/runner/testNGtestRunner.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/example/stepDefinations/stepDefination.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/example/stepDefinations/stepDefination.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test-output/ExtentReport.html" beforeDir="false" afterPath="$PROJECT_DIR$/test-output/ExtentReport.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test-output/logDump/testLogs21092425952.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testng.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

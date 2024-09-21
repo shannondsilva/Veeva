@@ -32,4 +32,5 @@ Feature: Testcases for checks on the Core Product functionality
       | chrome  | CP_URL | News & Features | =        | 1    |
       | edge    | CP_URL | News & Features | >        | 30   |
       | firefox | CP_URL | News & Features | !=       | 4    |
+      | firefox | CP_URL | News & Features | ==       | 4    |
 
