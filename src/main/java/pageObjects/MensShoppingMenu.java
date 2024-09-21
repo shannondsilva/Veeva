@@ -136,22 +136,6 @@ public class MensShoppingMenu {
 
     }
 
-//    public void logProductListDataToFile() throws Exception {
-//        Constants.setGenericString(Constants.getKey().returnDDMMYYSSString());
-//        try (BufferedWriter writer = new BufferedWriter(new FileWriter(System.getProperty("user.dir") + File.separator + "test-output" + File.separator + "logDump" + File.separator + "testLogs" + Constants.getGenericString() + ".txt"))) {
-//            Constants.getGenericList().stream().forEach(element -> {
-//                try {
-//                    writer.write(element);
-//                    writer.newLine();
-//                } catch (IOException e) {
-//                    throw new RuntimeException(e);
-//                }
-//            });
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
     public void handleCookiesAndPopups() throws Exception {
         String isVisibleCookie = Constants.getKey().verifyElementProperties(getCP_Mens_ClosePopup(),"visible");
         Constants.getKey().visibleWaitCondition(getCP_Mens_ClosePopup(),"visible");

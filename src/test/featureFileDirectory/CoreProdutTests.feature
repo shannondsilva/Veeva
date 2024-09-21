@@ -27,7 +27,7 @@ Feature: Testcases for checks on the Core Product functionality
 
     Examples:
       | browser | URL    | MenuCategory    | operator | days |
-      | edge    | CP_URL | News & Features | >=       | 3    |
+      | chrome  | CP_URL | News & Features | >=       | 3    |
       | firefox | CP_URL | News & Features | >        | 4    |
       | chrome  | CP_URL | News & Features | =        | 1    |
       | edge    | CP_URL | News & Features | >        | 30   |

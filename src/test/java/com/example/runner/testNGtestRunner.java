@@ -1,7 +1,5 @@
 package com.example.runner;
 
-import com.example.utils.StaticVariables;
-import io.cucumber.java.Before;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 import org.testng.annotations.*;
@@ -24,6 +22,7 @@ import java.io.File;
 )
 public class testNGtestRunner extends AbstractTestNGCucumberTests {
 
+    //This method will create a log dump folder prior to any testcase execution.
     @BeforeClass
     public void clearLogDump() {
 
@@ -50,7 +49,7 @@ public class testNGtestRunner extends AbstractTestNGCucumberTests {
         }
     }
 
-//    Commenting this, since need to limit parallel executions to <test> block
+
     @Override
     @DataProvider(parallel = true)  // Enable parallel execution
     public Object[][] scenarios() {
