@@ -1,24 +1,12 @@
 package com.example.runner;
 
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
-import com.aventstack.extentreports.reporter.configuration.Theme;
-import com.example.utils.Constants;
-import io.cucumber.java.After;
+import com.example.utils.StaticVariables;
 import io.cucumber.java.Before;
-import io.cucumber.java.Scenario;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
-import org.testng.Reporter;
 import org.testng.annotations.*;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-
-import static com.example.utils.Reusables.LogCapture;
 
 @CucumberOptions(
         features = "src/test/featureFileDirectory",
@@ -36,15 +24,9 @@ import static com.example.utils.Reusables.LogCapture;
 )
 public class testNGtestRunner extends AbstractTestNGCucumberTests {
 
-    @BeforeClass(alwaysRun = true)
-    @Parameters({"browser"})
-    public void setup(String browser) {
-        Constants.setBrowser(browser);
-    }
-//    mvn test -Dcucumber.filter.tags="@smoke and not @ignore"
-
     @BeforeClass
     public void clearLogDump() {
+
         File folder = new File(System.getProperty("user.dir") + File.separator + "test-output" + File.separator + "logDump");
         if (folder.exists() && folder.isDirectory()) {
             System.out.println("Folder exists. Clearing contents...");

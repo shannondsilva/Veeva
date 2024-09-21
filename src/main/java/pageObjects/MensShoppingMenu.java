@@ -26,6 +26,11 @@ public class MensShoppingMenu {
     @FindBy(xpath = "//li//span[text()='Jackets']")
     WebElement CP_Mens_Jacket_RadioBtn;
 
+    @FindBy(xpath = "//li//span[text()='Footwear']")
+    WebElement CP_Mens_Footwear_RadioBtn;
+
+    @FindBy(xpath = "//li//span[text()='Hats']")
+    WebElement CP_Mens_Hat_RadioBtn;
     @FindBy(xpath = "(//li[@class='simple-list hide-for-large']/div)[1]")
     WebElement CP_Mens_TotalPages;
 
@@ -44,6 +49,13 @@ public class MensShoppingMenu {
     @FindBy(xpath = "//div[@class='product-vibrancy top-seller-vibrancy']/span")
     List<WebElement> CP_Mens_ProductMessage;
 
+    public WebElement getCP_Mens_Footwear_RadioBtn() {
+        return CP_Mens_Footwear_RadioBtn;
+    }
+
+    public WebElement getCP_Mens_Hat_RadioBtn() {
+        return CP_Mens_Hat_RadioBtn;
+    }
     public List<WebElement> getCP_Mens_ProductMessage() {
         return CP_Mens_ProductMessage;
     }
@@ -124,21 +136,21 @@ public class MensShoppingMenu {
 
     }
 
-    public void logProductListDataToFile() throws Exception {
-        Constants.setGenericString(Constants.getKey().returnDDMMYYSSString());
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(System.getProperty("user.dir") + File.separator + "test-output" + File.separator + "logDump" + File.separator + "testLogs" + Constants.getGenericString() + ".txt"))) {
-            Constants.getGenericList().stream().forEach(element -> {
-                try {
-                    writer.write(element);
-                    writer.newLine();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            });
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+//    public void logProductListDataToFile() throws Exception {
+//        Constants.setGenericString(Constants.getKey().returnDDMMYYSSString());
+//        try (BufferedWriter writer = new BufferedWriter(new FileWriter(System.getProperty("user.dir") + File.separator + "test-output" + File.separator + "logDump" + File.separator + "testLogs" + Constants.getGenericString() + ".txt"))) {
+//            Constants.getGenericList().stream().forEach(element -> {
+//                try {
+//                    writer.write(element);
+//                    writer.newLine();
+//                } catch (IOException e) {
+//                    throw new RuntimeException(e);
+//                }
+//            });
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     public void handleCookiesAndPopups() throws Exception {
         String isVisibleCookie = Constants.getKey().verifyElementProperties(getCP_Mens_ClosePopup(),"visible");

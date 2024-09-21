@@ -3,6 +3,7 @@ package com.example.stepDefinations;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter;
+import com.example.runner.testNGtestRunner;
 import com.example.utils.*;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
@@ -13,6 +14,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
 
 import java.io.*;
 import java.lang.reflect.Constructor;
@@ -275,522 +277,13 @@ public class stepDefination  {
 
     }
 
-    @Given("Demo test StreamsAndLamda")
-    public void demoTestStreamsAndLamda() {
-
-        List<Integer> arr = Arrays.asList(1,3,4,4,1,2,4,5,7);
-        arr.stream().distinct().sorted().forEach(s->LogCapture.info(" ----------> "+s));
-
-
-        List<Integer> mp = arr.stream().distinct().sorted().collect(Collectors.toList());
-        LogCapture.info("---MP----->"+mp);
-
-        List<String> str = Arrays.asList("wrfsfsf","wcfsd","rfcaef","rfasfsd");
-        List<String> mp1 = Stream.of("dsf","tfds","gsrg","sgrsgs").filter(s->s.startsWith("s")).map(s->s.toUpperCase()).collect(Collectors.toList());
-        LogCapture.info("---MP----->"+mp1);
-
-//        Problem: Given a list of integers, find the sum of all even numbers.
-        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
-        int d = numbers.stream().filter(s->s%2==0).mapToInt(s->s.intValue()).sum();
-        LogCapture.info("d---->"+d);
-
-//        Problem: Given a list of strings, convert all strings to uppercase.
-        List<String> strings = Arrays.asList("apple", "banana", "cherry");
-        List<String> lst = strings.stream().map(s->s.toUpperCase()).collect(Collectors.toList());
-        LogCapture.info("lst---->"+lst);
-
-//        Problem: Given a list of strings, find the longest string.
-        List<String> stringsFruits = Arrays.asList("apple", "banana", "cherry", "date");
-        String maxWord = stringsFruits.stream().max(Comparator.comparingInt(s->s.length())).orElse(null);
-        LogCapture.info("maxWord---->"+maxWord);
-
-
-//        Problem: Given a list of strings, group them by their lengths.
-        List<String> stringsGroup = Arrays.asList("apple", "banana", "cherry", "date", "fig", "grape");
-        Map<Integer,List<String>> stringsGroupMap = stringsGroup.stream().collect(Collectors.groupingBy(s->s.length()));
-        LogCapture.info("stringsGroupMap---->"+stringsGroupMap);
-
-
-//        Problem: Given a list of integers, find all distinct elements.
-        List<Integer> numbersDistinct = Arrays.asList(1, 2, 2, 3, 4, 4, 5, 6, 7, 7, 8, 9, 10);
-        List<Integer> distinctList = numbersDistinct.stream().distinct().collect(Collectors.toList());
-        LogCapture.info("distinctList---->"+distinctList);
-
-
-//        Problem: Given a list of integers, find the first element greater than 5.
-        List<Integer> numbersFirstGreat = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
-        int firstGreater = numbersFirstGreat.stream().filter(s->s>5).findFirst().orElse(null);
-        LogCapture.info("firstGreater---->"+firstGreater);
-
-
-//        Problem: Given a list of lists, flatten it into a single list.
-        List<List<Integer>> listOfLists = Arrays.asList(
-                Arrays.asList(1, 2, 3),
-                Arrays.asList(4, 5, 6),
-                Arrays.asList(7, 8, 9)
-        );
-
-        List<Integer> flatList = listOfLists.stream().flatMap(s->s.stream()).collect(Collectors.toList());
-        LogCapture.info("flatList---->"+flatList);
-
-
-//        Problem: Given a list of integers, partition the list into even and odd numbers.
-        List<Integer> numbersPartition = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
-        Map<Boolean,List<Integer>> evenOddList = numbersPartition.stream().collect(Collectors.partitioningBy(s->s%2==0));
-        LogCapture.info("evenOddList---->"+evenOddList);
-
-//        Problem: Given a list of strings, count the frequency of each string.
-        List<String> stringsfrequency = Arrays.asList("apple", "banana", "apple", "cherry", "banana", "apple");
-        Map<String, Long> frequencyMap=stringsfrequency.stream().collect(Collectors.groupingBy(s->s,Collectors.counting()));
-        LogCapture.info("frequencyMap---->"+frequencyMap);
-
-//        Problem: Given a list of integers, find the second highest number.
-        List<Integer> numbers2ndHighest = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
-        Integer SecndHigh = numbers2ndHighest.stream().sorted().skip(2).findFirst().orElse(null);
-        LogCapture.info("SecndHigh---->"+SecndHigh);
-
-
-//        Given an Array , WAP to print all the odd numbers before and then followed by the even numbers, in a sorted manner
-
-        int[] a={2,4,5,6,7,3,1};
-        Map<Boolean, List<Integer>> mp12 = Arrays.stream(a).boxed().sorted().collect(Collectors.partitioningBy(s->s%2==0));
-        LogCapture.info("mp12 ---------------> "+mp12);
-        List<Integer> lst123 = new ArrayList<>();
-        lst123.addAll(mp12.get(false));
-        lst123.addAll(mp12.get(true));
-        LogCapture.info("lst123 ---------------> "+lst123);
-
-
-        List<Integer> lsts = Arrays.asList(1,4,7,3,1,4,6);
-        lsts.stream().filter(s->Collections.frequency(lsts,1) > 1).collect(Collectors.toList());
-
-        List<String> rShetty = Arrays.asList("a","g","y","a");
-        rShetty.stream().filter(s->s.startsWith("a")).map(String::toUpperCase).forEach(System.out::println);
-
-
-//        String str = "publicissapient"; // first non repeated characterd // 1st repeated characters
-//        int totalLnt = str.length();
-//        for(int i=0; i< str.length(); i++){
-//            String x = String.valueOf(str.charAt(i));
-//            String newStr = str.replaceAll(x,"");
-//            if(newStr.length()<=totalLnt-2){
-//                System.out.println("1st repeating character = "+x);
-//                break;
-//            }
-//        }
-//
-//        for(int i=0; i< str.length(); i++){
-//            String x = String.valueOf(str.charAt(i));
-//            String newStr = str.replaceAll(x,"");
-//            if(newStr.length()==totalLnt-1){
-//                System.out.println("1st NON-repeating character = "+x);
-//                break;
-//            }
-//        }
-//
-//        //{1,2,4,1,0,9,2,0,8} --> {1,2,4,1,9,2,0,0,0}
-//
-//        int[] arr = {1,2,4,1,0,9,2,0,0,8};
-//        int index=0;
-//        for (int i = 0; i < arr.length; i++) {
-//            if (arr[i] != 0) {
-//                arr[index++] = arr[i];
-//            }
-//        }
-//        while (index < arr.length) {
-//            arr[index++] = 0;
-//        }
-//
-////        r=4
-////
-////            1
-////           212
-////          32123
-////         4321234
-//
-//        int pyramidSize=4;
-//        for(int i = 0 ; i < pyramidSize; i++){
-//            int cnt=0;
-//            for(int j=1; j<pyramidSize-i;j++){
-//                System.out.print(" ");
-//                cnt++;
-//            }
-//            for(int a = pyramidSize; a > cnt; a--){
-//                System.out.print(a-cnt);
-//            }
-//            for(int a = pyramidSize-1; a > cnt; a--){
-//                System.out.print(pyramidSize-a+1);
-//            }
-//            System.out.println("");
-//        }
-    }
-
-
-    @Given("Demo test fabonacciSeries {int}")
-    public void demoTestFabonacciSeries(int num) {
-//        0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89 || num = 10
-        int[] fab = new int[num];
-        fab[0] = 0;
-        if(num>1){
-            fab[1] = 1;
-        }
-        for(int i = 2 ; i < num ; i++){
-
-            fab[i] = fab[i-1] + fab[i-2];
-        }
-
-        for(int i = 0 ; i < fab.length ; i++){
-
-            LogCapture.info("-->"+fab[i]);
-        }
-
-    }
-
-    @Given("Demo test SortedArrays")
-    public void demoTestSortedArrays() {
-
-//        arr1 --> 1,2,3,4,5
-//        arr2 --> 1,3,5,7,9
-//        o/p --> 1,1,2,3,3,4,5,5,7,9
-
-        int[] arr1 = {1,2,3,4,5};
-        int[] arr2 = {1,3,5,7,9,10};
-
-//        1,2,3,4,5,1,3,5,7,9,10
-
-        List<Integer> finalArrLst = new ArrayList<>();
-        for(int i = 0 ; i < arr1.length ; i++){
-            finalArrLst.add(arr1[i]);
-        }
-        for(int j = 0 ; j < arr2.length ; j++){
-            finalArrLst.add(arr2[j]);
-        }
-
-        List<Integer> finals = finalArrLst.stream().sorted().collect(Collectors.toList());
-        LogCapture.info("-->"+finals);
-
-    }
-
-    @Given("Demo test binarySearch")
-    public void demoTestBinarySearch() {
-        int searchParam = 7;
-        int[] a = {1,2,3,4,5,6,7,8};
-
-        LogCapture.info("binary result --> "+binarySearch(a,7));
-    }
-
-    public int binarySearch(int[] a, int searchParam){
-//        int[] a = {1,2,3,4,5,6,7,8};
-        int left = 0;
-        int right = a.length -1;
-        int cntr=0;
-        while(left<=right) {
-            cntr++;
-            LogCapture.info(" cntr-->"+cntr);
-            int mid = (left + right) / 2;
-            if (a[mid] == searchParam) {
-                return mid;
-            }
-
-            if (searchParam > a[mid]) {
-                left = mid + 1;
-            } else {
-                right = mid - 1;
-            }
-        }
-        return -1;
-    }
-
-
-    @Given("find the missing number")
-    public void findTheMissingNumber() {
-
-        int[] a = {1,2,3,4,5,6,7,9}; // 18
-
-
-        int originalSum=0;
-        int actualSum=0;
-        for(int i=0; i < a.length;i++){
-            originalSum+=a[i];
-        }
-        int max = a[a.length-1];
-
-        for(int j = 1 ; j <= max; j++){
-            actualSum+=j;
-        }
-
-        System.out.println("Missing element-->"+(actualSum-originalSum));
-
-
-
-    }
-
-    @Given("find the Anagram")
-    public void findTheAnagram() {
-        String str1 = "aabbcc";
-        String str2 = "abcacb";
-
-        char[] s1 = str1.toCharArray();
-        char[] s2 = str2.toCharArray();
-
-        Arrays.sort(s1);
-        Arrays.sort(s2);
-
-        System.out.println("Are strings Anagram s1 "+Integer.MIN_VALUE);
-
-        System.out.println("Are strings Anagram "+Arrays.equals(s1,s2));
-
-
-
-
-    }
-
-    @Given("Find the longest common prefix in an array of strings.")
-    public void findTheLongestCommonPrefixInAnArrayOfStrings() {
-
-        String[] arr = {"shannon", "shanti", "shalom"};
-        int i = 0;
-        int min = arr[0].length();
-        StringBuilder sb = new StringBuilder();
-        Character k = null;
-        for (String s : arr) {
-            if (s.length()<min){
-                min=s.length();
-            }
-        }
-        boolean isMatch=true;
-        while (i < min){
-            for (String s : arr) {
-                if (k == null) {
-                    k = s.charAt(i);
-                } else if (s.charAt(i) == k) {
-                    k = s.charAt(i);
-                }else{
-                    isMatch=false;
-                }
-            }
-            i++;
-            if(isMatch) {
-                sb.append(k);
-            }
-            k=null;
-    }
-        System.out.println("Here is the max prefix -->"+sb);
-
-    }
-
-    @Given("Remove duplicates from a sorted array in-place.")
-    public void removeDuplicatesFromASortedArrayInPlace() {
-
-        int[] arr = {1,2,4,6,8,8,9};
-        Arrays.sort(arr);
-
-        Set<Integer> s = new LinkedHashSet<>();
-        for(Integer i : arr){
-            s.add(i);
-        }
-
-        System.out.println("My Set --> "+s);
-
-    }
-
-    @Given("Find the element that appears more than n divide {int} times in an array of size n.")
-    public void findTheElementThatAppearsMoreThanNDivideTimesInAnArrayOfSizeN(int arg0) {
-
-            int[] arr = {2, 2, 1, 1, 1, 2, 2,1,1,1,1,1,1,1};
-
-            int arrSize = arr.length/2;
-
-            //HM --> Key(count) -- value(element data)
-
-
-            Map<Integer,Integer> HM = new HashMap<>();
-            int d=0;
-            for(int i : arr){
-                if(HM.containsKey(i)){
-                    HM.replace(i,HM.get(i)+1);
-                }else {
-                    HM.put(i, 1);
-                }
-            }
-
-
-            System.out.println("My HashMap --> "+HM);
-
-        //iterate HM for Key(Count) > arrSize
-
-        for(Map.Entry<Integer,Integer> e : HM.entrySet()){
-                if(e.getValue()>arrSize){
-                    System.out.println("Array element greater than n/2 -->"+e.getKey());
-                }
-        }
-
-
-    }
-
-    @Given("Rotate Array")
-    public void rotateArray() {
-
-//        Original Array: [1, 2, 3, 4, 5, 6, 7]
-//        After Rotation by 3: [5, 6, 7, 1, 2, 3, 4]
-
-        int rotationIndex=1;
-
-        int[] arr = {1, 2, 3, 4, 5, 6, 7};
-        List<Integer> lst = new ArrayList<>();
-        //iterate original array from rotationIndex+1 to arr.lenght-1
-        for(int i = arr.length-rotationIndex ; i < arr.length; i++){
-            //Store these values in an ArrayList
-            lst.add(arr[i]);
-        }
-
-        //Iterate remaining array from 0 to rotationIndex
-        for(int j = 0 ; j < arr.length-rotationIndex; j++){
-            lst.add(arr[j]);
-        }
-
-        System.out.println("My rotated array-->"+lst);
-
-
-    }
-
-    @Given("Merge overlapping intervals")
-    public void mergeOverlappingIntervals() {
-
-//        Consider the intervals: [[1, 3], [2, 6], [8, 10], [15, 18]].
-
-        List<List<Integer>> lst = Arrays.asList(
-                Arrays.asList(1,3),
-                Arrays.asList(8,10),
-                Arrays.asList(2,6),
-                Arrays.asList(9,15),
-                Arrays.asList(21,30)
-        );
-
-        List<List<Integer>> newList=new ArrayList<>();
-
-        //Iterate the List-List arr and sort each array
-        lst.sort(Comparator.comparingInt(a -> a.get(0)));
-        for(List<Integer> iLst : lst){
-            iLst.sort((a,b)->a.compareTo(b));
-        }
-        System.out.println("lst --> "+lst);
-
-        //if last element > 1st element of next array --> merge both arrays --> Add in newLst array
-
-        for(int i = 0 ; i < lst.size(); i++){
-            if ((i+1)<lst.size()) {
-                if(lst.get(i).get(1) > lst.get(i+1).get(0)){
-                    newList.add(Arrays.asList(lst.get(i).get(0),lst.get(i+1).get(1)));
-                }else{
-                    if((i-1)>0 && newList.size()>i && (!newList.get(i-1).contains(lst.get(i).get(0)) || !newList.get(i-1).contains(lst.get(i).get(1))))
-                    newList.add(lst.get(i));
-                }
-            }
-            else if((i+1)==lst.size()){
-                    newList.add(lst.get(i));
-            }
-        }
-
-        System.out.println("new list check -->"+newList);
-
-
-
-
-
-    }
-
-    @Given("Reverse a singly linked list.")
-    public void reverseASinglyLinkedList() {
-
-
-    }
-
-
-    @Given("Evaluate Reverse Polish Notation")
-    public void evaluateReversePolishNotation() {
-//["2", "1", "+", "3", "*"] -> ((2 + 1) * 3) -> 9
-//["4", "13", "5", "/", "+"] -> (4 + (13 / 5)) -> 6
-        String[] polishN = {"4", "13", "5", "/", "+"};
-        String operators = "+-/*%";
-        Stack<String> stk = new Stack<>();
-        for(String pn : polishN){
-            if(!operators.contains(pn)){
-                stk.push(pn);
-            }
-            else {
-                //operator found
-                int temp=0;
-                int a = Integer.parseInt(stk.pop());
-                int b = Integer.parseInt(stk.pop());
-
-                switch (pn){
-                    case "+":
-                        temp = b+a;
-                        break;
-                    case "-":
-                        temp = b-a;
-                        break;
-                    case "*":
-                        temp = b*a;
-                        break;
-                    case "/":
-                        temp = b/a;
-                        break;
-                }
-                stk.push(temp+"");
-
-            }
-        }
-        System.out.println("-------->"+stk.pop());
-    }
-
-    @Given("Isomorphic Strings")
-    public void isomorphicStrings() {
-        String a = "shannon"; //-->7
-        String b = "asdfghj"; // aabbccd
-
-        if(a.length()!=b.length()){
-                System.out.println("NON ISOMORPHIC STRINGS !!!");
-        }else{
-                //if all values in b are unique then a is isomorphic wrt b
-               boolean isUnique=false;
-                    for(int i = 0 ; i < b.length(); i++){
-                        b.charAt(i);
-                        String x = b.replaceAll(b.charAt(i)+"",""); //bbccd --> 5
-                        if(x.length()<b.length()-1){
-                            isUnique=false;
-                            break;
-                        }else
-                        {
-                            isUnique=true;
-                        }
-                    }
-                //if there is atleast 1 character repeated in b then checks needed
-                        if(!isUnique){
-
-                            // if that repeated character in b has the different corresponding character in a then NON-ISOMORPHIC
-
-//                            shannon
-//                            asdfghj
-//                                 s-->a
-//                                 h-->s
-//                                 a-->d
-
-                            // else its ISOMORPHIC !!!
-
-                        }
-
-        }
-
-
-    }
 
     @Given("User opens the {string} and loads the {string}")
     public void userOpensTheAndLoadsThe(String browser, String URL) {
-        browser = (Constants.getTestNGBrowser() == null)
-                ? Constants.getConfig().getProperty("browser")
-                : Constants.getTestNGBrowser();
+
+        browser = (browser != "")
+                ? browser
+                : Constants.getConfig().getProperty("browser");
         LogCapture.info("Browser invoker is ---->" + browser);
         URL = Constants.getConfig().getProperty(URL);
         Constants.getKey().openBrowser(browser, URL);
@@ -810,13 +303,15 @@ public class stepDefination  {
     public void iNavigateToTheShopMenuAndSelectCategory(String shopMenuCategory) throws Exception {
 
         Assert.assertEquals(Constants.getKey().MouseFunctions(Constants.getCP_POM().getCP_ShopMenu(),"MoveToElement"),"PASSED","ERROR >> MoveToElement failed");
-
         switch (shopMenuCategory){
             case "Men's":
                 Assert.assertEquals(Constants.getKey().click(Constants.getCP_POM().getCP_ShopMenu_Mens(),""),"PASSED","ERROR >> getCP_ShopMenu_Mens clicked failed");
                 break;
             case "Women's":
-                Assert.assertEquals(Constants.getKey().click(Constants.getCP_POM().getCP_ShopMenu_Mens(),""),"PASSED","ERROR >> getCP_ShopMenu_Mens clicked failed");
+                Assert.assertEquals(Constants.getKey().click(Constants.getCP_POM().getCP_ShopMenu_Women(),""),"PASSED","ERROR >> getCP_ShopMenu_Women clicked failed");
+                break;
+            case "Kids":
+                Assert.assertEquals(Constants.getKey().click(Constants.getCP_POM().getCP_ShopMenu_Kids(),""),"PASSED","ERROR >> getCP_ShopMenu_Kids clicked failed");
                 break;
             default:
                 LogCapture.error("Incorrect Shop menu cart provided");
@@ -837,24 +332,58 @@ public class stepDefination  {
         Assert.assertEquals(Constants.getKey().KeyboardAction(Constants.getCP_ShopMen_POM().getCP_Mens_NextPage(),"upArrow"),"PASSED","ERROR >> getCP_Mens_Jacket_RadioBtn KeyboardAction failed");
         Assert.assertEquals(Constants.getKey().KeyboardAction(Constants.getCP_ShopMen_POM().getCP_Mens_NextPage(),"upArrow"),"PASSED","ERROR >> getCP_Mens_Jacket_RadioBtn KeyboardAction failed");
         Assert.assertEquals(Constants.getKey().KeyboardAction(Constants.getCP_ShopMen_POM().getCP_Mens_NextPage(),"upArrow"),"PASSED","ERROR >> getCP_Mens_Jacket_RadioBtn KeyboardAction failed");
-        Assert.assertEquals(Constants.getKey().click(Constants.getCP_ShopMen_POM().getCP_Mens_Jacket_RadioBtn(),""),"PASSED","ERROR >> getCP_Mens_Jacket_RadioBtn clicked failed");
+
+        switch(productType){
+            case "Jackets":
+                Assert.assertEquals(Constants.getKey().click(Constants.getCP_ShopMen_POM().getCP_Mens_Jacket_RadioBtn(),""),"PASSED","ERROR >> getCP_Mens_Jacket_RadioBtn clicked failed");
+                break;
+            case "Footwear":
+                Assert.assertEquals(Constants.getKey().click(Constants.getCP_ShopMen_POM().getCP_Mens_Footwear_RadioBtn(),""),"PASSED","ERROR >> getCP_Mens_Footwear_RadioBtn clicked failed");
+                break;
+            case "Hats":
+                Assert.assertEquals(Constants.getKey().click(Constants.getCP_ShopMen_POM().getCP_Mens_Hat_RadioBtn(),""),"PASSED","ERROR >> getCP_Mens_Hat_RadioBtn clicked failed");
+                break;
+            default:
+                LogCapture.error("Please give a valid productType option");
+        }
+
+
+
         Constants.getCP_ShopMen_POM().saveProductListData();
     }
 
     @Then("I store each Price, Title, and Top Seller message of the {string} and {string} in a text file")
     public void iStoreEachPriceTitleAndTopSellerMessageOfTheAndInATextFile(String ShopMenuCategory, String ProductType) throws Exception {
-        if(ShopMenuCategory.equalsIgnoreCase("Men's") && ProductType.equalsIgnoreCase("Jackets")){
-            Constants.getCP_ShopMen_POM().logProductListDataToFile();
-        }
-        else if(ShopMenuCategory.equalsIgnoreCase("Women's") && ProductType.equalsIgnoreCase("Jackets")){
-            //Future criteria to be added
-        }
+        Constants.getKey().logListDataToFile();
     }
 
     @And("I attach the generated text file to the test report")
     public void iAttachTheGeneratedTextFileToTheTestReport() {
         ExtentTest test = ExtentCucumberAdapter.getCurrentStep();
         test.log(Status.INFO, "Attached file: <a href='" +System.getProperty("user.dir")+ File.separator+"test-output"+File.separator+"logDump"+File.separator+"testLogs"+Constants.getGenericString()+".txt"+ "'>Check Log file</a>");
+    }
 
+    @And("I navigate to the three dotted Menu and select {string} category")
+    public void iNavigateToTheThreeDottedMenuAndSelectCategory(String MenuCategory) throws Exception {
+
+        Assert.assertEquals(Constants.getKey().MouseFunctions(Constants.getCP_POM().getCP_ThreeDottedButton(),"MoveToElement"),"PASSED","ERROR >> MoveToElement failed");
+        switch (MenuCategory){
+            case "News & Features":
+                Assert.assertEquals(Constants.getKey().click(Constants.getCP_POM().getCP_NewsAndFeaturesLink(),""),"PASSED","ERROR >> getCP_ShopMenu_Mens clicked failed");
+                break;
+            case "Stay Connected":
+                //Future implementations here
+                break;
+            default:
+                LogCapture.error("Incorrect Shop menu cart provided");
+        }
+
+    }
+
+    @Then("I navigate to the News page and count all video feeds {string} {string}")
+    public void iNavigateToTheNewsPageAndValidateAllVideoFeeds(String operator, String days) throws Exception {
+        Constants.getCP_NewsAndFeatures_POM().setDriver();
+        Constants.getCP_NewsAndFeatures_POM().countVideoFeeds(operator, Integer.parseInt(days));
+        Constants.getKey().logListDataToFile();
     }
 }

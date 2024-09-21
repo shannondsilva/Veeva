@@ -13,6 +13,10 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.*;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.invoke.SwitchPoint;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
@@ -354,6 +358,32 @@ public class Reusables {
         } catch (Exception e) {
             LogCapture.error("returnDDMMYYSSString method failed");
             return Constants.FailedBlock;
+        }
+    }
+
+    public String getAttributeText(WebElement element, String attribute) {
+        try {
+            LogCapture.info("getAttributeText method called");
+            return element.getAttribute(attribute);
+        } catch (Exception e) {
+            LogCapture.error("getAttributeText method failed");
+            return Constants.FailedBlock;
+        }
+    }
+
+    public void logListDataToFile() throws Exception {
+        Constants.setGenericString(Constants.getKey().returnDDMMYYSSString());
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(System.getProperty("user.dir") + File.separator + "test-output" + File.separator + "logDump" + File.separator + "testLogs" + Constants.getGenericString() + ".txt"))) {
+            Constants.getGenericList().stream().forEach(element -> {
+                try {
+                    writer.write(element);
+                    writer.newLine();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

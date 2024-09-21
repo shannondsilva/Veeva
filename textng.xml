@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="NBA Website test" parallel="tests">
+
     <test name="Core Product Test 1">
         <parameter name="cucumber.filter.tags" value="@CP_1" />
-        <parameter name="browser" value="edge" />
         <classes>
             <class name="com.example.runner.testNGtestRunner" />
         </classes>
     </test>
+
     <test name="Core Product Test 2">
         <parameter name="cucumber.filter.tags" value="@CP_2" />
-        <parameter name="browser" value="chrome" />
         <classes>
             <class name="com.example.runner.testNGtestRunner" />
         </classes>
     </test>
+
 </suite>
