@@ -12,6 +12,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -76,17 +77,18 @@ public class MensShoppingMenu {
     }
 
     public void setDriver() {
-        this.driver = Constants.driver;
-        PageFactory.initElements(Constants.driver, this);
+        this.driver = Constants.getDriver();
+        PageFactory.initElements(Constants.getDriver(), this);
     }
 
     public void saveProductListData() throws Exception {
-        Constants.genericString = Constants.key.returnDDMMYYSSString();
+        Constants.setGenericString(Constants.getKey().returnDDMMYYSSString());
         try {
             int productCounter = 0;
             boolean isEnabled=true;
+            List<String> localLst = new ArrayList<>();
             while(isEnabled) {
-                isEnabled = Constants.key.verifyElementProperties(getCP_Mens_NextPage(), "enabled").equals("PASSED");
+                isEnabled = Constants.getKey().verifyElementProperties(getCP_Mens_NextPage(), "enabled").equals("PASSED");
                 int numberOfProducts = CP_Mens_ProductCards.size();
                 System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx "+numberOfProducts);
                 for (int i = 0; i < numberOfProducts; i++) {
@@ -101,20 +103,21 @@ public class MensShoppingMenu {
                     }
                     // Write each product's details to the file
                     System.out.println("=======================================================================================================");
-                    Constants.genericList.add("--------------Below Product "+productCounter+"-----------------------------------");
-                    Constants.genericList.add("Product Title: " + title);
-                    Constants.genericList.add("Product Price: " + price);
-                    Constants.genericList.add("Product Message: " + specialMessage);
+                    localLst.add("--------------Below Product "+productCounter+"-----------------------------------");
+                    localLst.add("Product Title: " + title);
+                    localLst.add("Product Price: " + price);
+                    localLst.add("Product Message: " + specialMessage);
                     System.out.println("======================================================================================================="+i);
                 }
-                Constants.key.click(getCP_Mens_NextPage(),"");
+                Constants.getKey().click(getCP_Mens_NextPage(),"");
                 // Re-fetch the elements after page reload
                 CP_Mens_ProductCards = driver.findElements(By.xpath("//div[@class='product-card row']"));
                 CP_Mens_ProductPrices = driver.findElements(By.xpath("//span[@class='lowest']//span[@class='money-value']"));
                 CP_Mens_ProductTitles = driver.findElements(By.xpath("//div[@class='product-card-title']/a"));
                 CP_Mens_ProductMessage = driver.findElements(By.xpath("//div[@class='product-vibrancy top-seller-vibrancy']/span"));
             }
-            System.out.println("Product details successfully written to the file.");
+            Constants.setGenericList(localLst);
+            System.out.println("Product details successfully saved.");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -122,9 +125,9 @@ public class MensShoppingMenu {
     }
 
     public void logProductListDataToFile() throws Exception {
-        Constants.genericString = Constants.key.returnDDMMYYSSString();
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(System.getProperty("user.dir") + File.separator + "test-output" + File.separator + "logDump" + File.separator + "testLogs" + Constants.genericString + ".txt"))) {
-            Constants.genericList.stream().forEach(element -> {
+        Constants.setGenericString(Constants.getKey().returnDDMMYYSSString());
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(System.getProperty("user.dir") + File.separator + "test-output" + File.separator + "logDump" + File.separator + "testLogs" + Constants.getGenericString() + ".txt"))) {
+            Constants.getGenericList().stream().forEach(element -> {
                 try {
                     writer.write(element);
                     writer.newLine();
@@ -138,10 +141,10 @@ public class MensShoppingMenu {
     }
 
     public void handleCookiesAndPopups() throws Exception {
-        String isVisibleCookie = Constants.key.verifyElementProperties(getCP_Mens_ClosePopup(),"visible");
-        Constants.key.visibleWaitCondition(getCP_Mens_ClosePopup(),"visible");
+        String isVisibleCookie = Constants.getKey().verifyElementProperties(getCP_Mens_ClosePopup(),"visible");
+        Constants.getKey().visibleWaitCondition(getCP_Mens_ClosePopup(),"visible");
         if(isVisibleCookie.equals("PASSED")){
-            Constants.key.click(getCP_Mens_ClosePopup(),"");
+            Constants.getKey().click(getCP_Mens_ClosePopup(),"");
         }
     }
 

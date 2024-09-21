@@ -17,27 +17,19 @@ public class Base extends Reusables {
     @Before
     public void initialiseParameters(Scenario scenario) throws IOException {
 
-        Constants.key = new Reusables();
-
-        InputStream inputStream = new FileInputStream(System.getProperty("user.dir")+ File.separator+"src"+File.separator+"main"+File.separator+"resources"+File.separator+"application.properties");
-        Constants.applicationProperty = new Properties();
-        Constants.applicationProperty.load(inputStream);
+        Constants.setKey(new Reusables());
 
         InputStream inputStream1 = new FileInputStream("config.properties");
-        Constants.config = new Properties();
-        Constants.config.load(inputStream1);
+        Constants.setConfig(new Properties());
+        Constants.getConfig().load(inputStream1);
 
-
-        InputStream inputStream2 = new FileInputStream(System.getProperty("user.dir")+ File.separator+"src"+File.separator+"main"+File.separator+"resources"+File.separator+"MarsApp.properties");
-        Constants.MarsApp = new Properties();
-        Constants.MarsApp.load(inputStream2);
     }
 
     @After
     public void tearDown(Scenario scenario){
 
-        if(Constants.driver!=null){
-            Constants.driver.quit();
+        if(Constants.getDriver()!=null){
+            Constants.getDriver().quit();
         }
         LogCapture.info("Scenario Name --> "+scenario.getName());
     }

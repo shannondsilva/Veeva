@@ -58,21 +58,19 @@ public class CoreProductLandingPage {
     }
 
     public void setDriver() {
-        this.driver = Constants.driver;
-        PageFactory.initElements(Constants.driver,this);
+        this.driver = Constants.getDriver();
+        PageFactory.initElements(Constants.getDriver(),this);
     }
 
     public void handleCookiesAndPopups() throws Exception {
-            String isVisibleCookie = Constants.key.verifyElementProperties(getCP_OneTrustCookieAccept(),"visible");
-            String isVisiblePopup = Constants.key.verifyElementProperties(getCP_CancelPopup(),"visible");
+            String isVisibleCookie = Constants.getKey().verifyElementProperties(getCP_OneTrustCookieAccept(),"visible");
+            String isVisiblePopup = Constants.getKey().verifyElementProperties(getCP_CancelPopup(),"visible");
             if(isVisibleCookie.equals("PASSED")){
-                Constants.key.click(getCP_OneTrustCookieAccept(),"");
+                Constants.getKey().click(getCP_OneTrustCookieAccept(),"");
             }
             if(isVisiblePopup.equals("PASSED")){
-                Constants.key.click(getCP_CancelPopup(),"");
+                Constants.getKey().click(getCP_CancelPopup(),"");
             }
-
     }
-
 
 }

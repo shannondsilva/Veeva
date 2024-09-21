@@ -34,13 +34,13 @@ public class Reusables {
             options.setExperimentalOption("prefs", prefs);
 
             switch (data.toLowerCase()) {
-                case "chrome" -> Constants.driver = new ChromeDriver(options);
-                case "edge" -> Constants.driver = new EdgeDriver();
-                case "firefox" -> Constants.driver = new FirefoxDriver();
+                case "chrome" -> Constants.setDriver(new ChromeDriver(options));
+                case "edge" -> Constants.setDriver(new EdgeDriver());
+                case "firefox" -> Constants.setDriver(new FirefoxDriver());
             }
-            Constants.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-            Constants.driver.manage().window().maximize();
-            Constants.driver.get(value);
+            Constants.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+            Constants.getDriver().manage().window().maximize();
+            Constants.getDriver().get(value);
             LogCapture.info("openBrowser method executed");
             return Constants.PassedBlock;
         } catch (Exception e) {
@@ -52,7 +52,7 @@ public class Reusables {
     public String click(String data, String value) {
         try {
             LogCapture.info("click method called");
-            Constants.driver.findElement(By.xpath(data)).click();
+            Constants.getDriver().findElement(By.xpath(data)).click();
             LogCapture.info("click method executed");
             return Constants.PassedBlock;
         } catch (Exception e) {
@@ -65,7 +65,7 @@ public class Reusables {
     public String fluentWait(String data, String value) {
         try {
 
-            Wait<WebDriver> fWait = new FluentWait<>(Constants.driver)
+            Wait<WebDriver> fWait = new FluentWait<>(Constants.getDriver())
                     .withTimeout(Duration.ofSeconds(10))
                     .pollingEvery(Duration.ofSeconds(1))
                     .ignoring(NoSuchElementException.class);
@@ -79,7 +79,7 @@ public class Reusables {
     public String visibleWaitCondition(String data, String value) {
         try {
             LogCapture.info("visibleWaitCondition method called");
-            WebDriverWait wait = new WebDriverWait(Constants.driver, Duration.ofSeconds(Long.parseLong(value)));
+            WebDriverWait wait = new WebDriverWait(Constants.getDriver(), Duration.ofSeconds(Long.parseLong(value)));
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(data)));
             LogCapture.info("visibleWaitCondition method executed");
             return Constants.PassedBlock;
@@ -95,7 +95,7 @@ public class Reusables {
     public String InvisibleWaitCondition(String data, String value) {
         try {
             LogCapture.info("InvisibleWaitCondition method called");
-            WebDriverWait wait = new WebDriverWait(Constants.driver, Duration.ofSeconds(Long.parseLong(value)));
+            WebDriverWait wait = new WebDriverWait(Constants.getDriver(), Duration.ofSeconds(Long.parseLong(value)));
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(data)));
             LogCapture.info("visibleWaitCondition method executed");
             return Constants.PassedBlock;
@@ -109,7 +109,7 @@ public class Reusables {
     public String navigateToURL(String data, String value) {
         try {
             LogCapture.info("navigateToURL method called");
-            Constants.driver.navigate().to(Constants.config.getProperty(data));
+            Constants.getDriver().navigate().to(Constants.getConfig().getProperty(data));
             LogCapture.info("navigateToURL method executed");
             return Constants.PassedBlock;
         } catch (Exception e) {
@@ -122,7 +122,7 @@ public class Reusables {
         try {
             LogCapture.info("writeToElement method called");
             visibleWaitCondition(data,"10");
-            Constants.driver.findElement(By.xpath(data)).sendKeys(value);
+            Constants.getDriver().findElement(By.xpath(data)).sendKeys(value);
             LogCapture.info("writeToElement method executed");
             return Constants.PassedBlock;
         } catch (Exception e) {
@@ -135,7 +135,7 @@ public class Reusables {
     public String selectTagDropDownValidation(String data, String value) {
         try {
             LogCapture.info("writeToElement method called");
-            Select select = new Select(Constants.driver.findElement(By.xpath(data)));
+            Select select = new Select(Constants.getDriver().findElement(By.xpath(data)));
             click(data,"");
             Arrays.asList(value.split("\\|")).forEach(a->select.selectByVisibleText(a));
             LogCapture.info("writeToElement method executed");
@@ -164,7 +164,7 @@ public class Reusables {
     public String visibleWaitCondition(WebElement element, String value) {
         try {
             LogCapture.info("visibleWaitCondition method called");
-            WebDriverWait wait = new WebDriverWait(Constants.driver, Duration.ofSeconds(Long.parseLong(value)));
+            WebDriverWait wait = new WebDriverWait(Constants.getDriver(), Duration.ofSeconds(Long.parseLong(value)));
             wait.until(ExpectedConditions.visibilityOf(element));
             LogCapture.info("visibleWaitCondition method executed");
             return Constants.PassedBlock;
@@ -246,7 +246,7 @@ public class Reusables {
 
     public String MouseFunctions(WebElement element, String data) throws Exception {
         try {
-            Actions action = new Actions(Constants.driver);
+            Actions action = new Actions(Constants.getDriver());
             if (data.equalsIgnoreCase("clickAndHold")) {
                 action.moveToElement(element).build().perform();
                 action.clickAndHold(element).build().perform();
@@ -283,14 +283,14 @@ public class Reusables {
     public String switchToWindow(String data) throws Throwable {
         String title;
         try {
-            String mainWindowHandle = Constants.driver.getWindowHandle();
-            Set<String> allWindowHandles = Constants.driver.getWindowHandles();
+            String mainWindowHandle = Constants.getDriver().getWindowHandle();
+            Set<String> allWindowHandles = Constants.getDriver().getWindowHandles();
             Iterator<String> iterator = allWindowHandles.iterator();
             while (iterator.hasNext()) {
                 String ChildWindow = iterator.next();
                 if (!mainWindowHandle.equalsIgnoreCase(ChildWindow)) {
-                    Constants.driver.switchTo().window(ChildWindow);
-                    title = Constants.driver.switchTo().window(ChildWindow).getTitle();
+                    Constants.getDriver().switchTo().window(ChildWindow);
+                    title = Constants.getDriver().switchTo().window(ChildWindow).getTitle();
                     System.out.println("Window title " + title);
                     if (title.equalsIgnoreCase(data)) {
                         LogCapture.info("User successfully verify window title" + title);
@@ -324,7 +324,7 @@ public class Reusables {
     public String javascrpiptScroll(WebElement element, String data) throws Exception {
         try {
             String js = "arguments[0].scrollIntoView();";
-            ((JavascriptExecutor) Constants.driver).executeScript(js, element);
+            ((JavascriptExecutor) Constants.getDriver()).executeScript(js, element);
         } catch (Exception e) {
             return Constants.FailedBlock + "object does not exist " + e.getMessage();
         }
@@ -334,7 +334,7 @@ public class Reusables {
     public String InvisibleWaitCondition(WebElement element, String value) {
         try {
             LogCapture.info("InvisibleWaitCondition method called");
-            WebDriverWait wait = new WebDriverWait(Constants.driver, Duration.ofSeconds(Long.parseLong(value)));
+            WebDriverWait wait = new WebDriverWait(Constants.getDriver(), Duration.ofSeconds(Long.parseLong(value)));
             wait.until(ExpectedConditions.visibilityOf(element));
             LogCapture.info("visibleWaitCondition method executed");
             return Constants.PassedBlock;

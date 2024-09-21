@@ -4,47 +4,24 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter;
 import com.example.utils.*;
-import com.fasterxml.jackson.core.exc.StreamWriteException;
-import com.fasterxml.jackson.databind.DatabindException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.mysql.cj.log.Log;
-import com.sun.xml.bind.v2.runtime.reflect.opt.Const;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.java.eo.Se;
-import io.cucumber.java.it.Ma;
-import io.cucumber.java.sl.In;
-import org.checkerframework.checker.units.qual.C;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
+import org.testng.annotations.Parameters;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
 import java.io.*;
-import java.lang.invoke.SwitchPoint;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
-import java.sql.*;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static com.example.utils.Reusables.LogCapture;
@@ -55,25 +32,16 @@ public class stepDefination  {
     @Given("User launches browser {string}")
     public void user_launches_browser(String browser) {
 
-        String vObjBrowser = Constants.config.getProperty("browser");
-        Assert.assertEquals("PASSED",Constants.key.openBrowser(vObjBrowser,""));
+        String vObjBrowser = Constants.getConfig().getProperty("browser");
+        Assert.assertEquals("PASSED",Constants.getKey().openBrowser(vObjBrowser,""));
 
     }
     @When("User enters {string} into the browser and lands on the page")
     public void user_enters_into_the_browser_and_lands_on_the_page(String url) {
 
-        Assert.assertEquals("PASSED",Constants.key.navigateToURL(url,""));
+        Assert.assertEquals("PASSED",Constants.getKey().navigateToURL(url,""));
     }
-    @Then("User check for the home and books field")
-    public void user_check_for_the_username_and_password_field() {
 
-        String vObjbooks = Constants.applicationProperty.getProperty("books");
-        String vObjhome = Constants.applicationProperty.getProperty("home");
-
-        Assert.assertEquals("PASSED",Constants.key.visibleWaitCondition(vObjbooks,"3"));
-        Assert.assertEquals("PASSED",Constants.key.visibleWaitCondition(vObjhome,"3"));
-
-    }
 
     ArrayList<String> storeMultiLevelElements = new ArrayList<>();
     @Given("User needs to find the chemical element count for {string}")
@@ -208,22 +176,6 @@ public class stepDefination  {
 
     }
 
-    @Given("Run my naukri.com profile")
-    public void runMyNaukriComProfile() {
-
-        Constants.key.openBrowser("Chrome","");
-        Constants.driver.get("https://www.naukri.com/");
-        Constants.key.visibleWaitCondition("//a[@id='login_Layer']","10");
-        Constants.key.click("//a[@id='login_Layer']","");
-
-        Constants.key.writeToElement("//input[@placeholder='Enter your active Email ID / Username']","shannondsilva001@gmail.com");
-        Constants.key.writeToElement("//input[@placeholder='Enter your password']","shannon2681994");
-        Constants.key.click("//button[@type='submit']","");
-        Constants.key.visibleWaitCondition("//div[text()='Profile performance']","10");
-
-
-
-    }
 
     @Given("BAT file executions for docker up")
     public void batFileExecutionsForDockerUp() throws IOException {
@@ -836,61 +788,35 @@ public class stepDefination  {
 
     @Given("User opens the {string} and loads the {string}")
     public void userOpensTheAndLoadsThe(String browser, String URL) {
-
-        browser=Constants.config.getProperty("browser");
-        URL=Constants.config.getProperty(URL);
-        Constants.key.openBrowser(browser,URL);
-    }
-
-    @When("the page loads, check for all basic components loaded on the home page")
-    public void thePageLoadsCheckForAllBasicComponentsLoadedOnTheHomePage() {
-
-        LogCapture.info("Checking all components of the MarsAir page loaded...");
-        String vObjlogo = Constants.MarsApp.getProperty("companyLogo");
-        String vObjreportAnIssue = Constants.MarsApp.getProperty("reportAnIssue");
-        String vObjproblemDefination = Constants.MarsApp.getProperty("problemDefination");
-        String vObjprivacyPolicy = Constants.MarsApp.getProperty("privacyPolicy");
-        String vObjformLoaded = Constants.MarsApp.getProperty("formLoaded");
-
-        Assert.assertEquals(Constants.key.visibleWaitCondition(vObjlogo,"10"),"PASSED","ERROR >> Logo not loaded");
-        Assert.assertEquals(Constants.key.visibleWaitCondition(vObjreportAnIssue,"10"),"PASSED","ERROR >> Report an Issue not loaded");
-        Assert.assertEquals(Constants.key.visibleWaitCondition(vObjproblemDefination,"10"),"PASSED");
-        Assert.assertEquals(Constants.key.visibleWaitCondition(vObjprivacyPolicy,"10"),"PASSED");
-        Assert.assertEquals(Constants.key.visibleWaitCondition(vObjformLoaded,"10"),"PASSED");
-        LogCapture.info("All components of the MarsAir page loaded SUCCESSFULLY...");
-
-    }
-
-    @Then("the user clicks the departure dropdown and validates its values {string}")
-    public void theUserClicksTheDepartureDropdownAndValidatesItsValues(String depDDL) {
-            String vObjddlValues = Constants.MarsApp.getProperty(depDDL);
-            String vObjddlXpath = Constants.MarsApp.getProperty("departureDropdown");
-        Assert.assertEquals(Constants.key.selectTagDropDownValidation(vObjddlXpath,vObjddlValues),"PASSED");
-
-
+        browser = (Constants.getTestNGBrowser() == null)
+                ? Constants.getConfig().getProperty("browser")
+                : Constants.getTestNGBrowser();
+        LogCapture.info("Browser invoker is ---->" + browser);
+        URL = Constants.getConfig().getProperty(URL);
+        Constants.getKey().openBrowser(browser, URL);
     }
 
     @When("I am on the CP Home Page and do some quick element loaded validations")
     public void iAmOnTheCPHomePageAndDoSomeQuickElementLoadedValidations() throws Exception {
 
-        Constants.CP_POM.setDriver();
-        Constants.CP_POM.handleCookiesAndPopups();
-        Assert.assertEquals(Constants.key.visibleWaitCondition(Constants.CP_POM.getCP_MainMenuBar(),"3"),"PASSED","ERROR >> Main menu NOT visible");
-        Assert.assertEquals(Constants.key.visibleWaitCondition(Constants.CP_POM.getCP_SubMenuBar(),"3"),"PASSED","ERROR >> Sub menu NOT visible");
+        Constants.getCP_POM().setDriver();
+        Constants.getCP_POM().handleCookiesAndPopups();
+        Assert.assertEquals(Constants.getKey().visibleWaitCondition(Constants.getCP_POM().getCP_MainMenuBar(),"3"),"PASSED","ERROR >> Main menu NOT visible");
+        Assert.assertEquals(Constants.getKey().visibleWaitCondition(Constants.getCP_POM().getCP_SubMenuBar(),"3"),"PASSED","ERROR >> Sub menu NOT visible");
 
     }
 
     @And("I navigate to the Shop Menu and select {string} category")
     public void iNavigateToTheShopMenuAndSelectCategory(String shopMenuCategory) throws Exception {
 
-        Assert.assertEquals(Constants.key.MouseFunctions(Constants.CP_POM.getCP_ShopMenu(),"MoveToElement"),"PASSED","ERROR >> MoveToElement failed");
+        Assert.assertEquals(Constants.getKey().MouseFunctions(Constants.getCP_POM().getCP_ShopMenu(),"MoveToElement"),"PASSED","ERROR >> MoveToElement failed");
 
         switch (shopMenuCategory){
             case "Men's":
-                Assert.assertEquals(Constants.key.click(Constants.CP_POM.getCP_ShopMenu_Mens(),""),"PASSED","ERROR >> getCP_ShopMenu_Mens clicked failed");
+                Assert.assertEquals(Constants.getKey().click(Constants.getCP_POM().getCP_ShopMenu_Mens(),""),"PASSED","ERROR >> getCP_ShopMenu_Mens clicked failed");
                 break;
             case "Women's":
-                Assert.assertEquals(Constants.key.click(Constants.CP_POM.getCP_ShopMenu_Mens(),""),"PASSED","ERROR >> getCP_ShopMenu_Mens clicked failed");
+                Assert.assertEquals(Constants.getKey().click(Constants.getCP_POM().getCP_ShopMenu_Mens(),""),"PASSED","ERROR >> getCP_ShopMenu_Mens clicked failed");
                 break;
             default:
                 LogCapture.error("Incorrect Shop menu cart provided");
@@ -899,37 +825,36 @@ public class stepDefination  {
 
     }
 
-
     @And("I find all {string} from all paginated pages")
     public void iFindAllFromAllPaginatedPages(String productType) throws Throwable {
-        Constants.CP_ShopMen_POM.setDriver();
-        String mensPrdPgTitle=Constants.config.getProperty("CP_MensProductPageTitle");
-        Assert.assertEquals(Constants.key.switchToWindow(mensPrdPgTitle),"PASSED","ERROR >> Child window switch failed");
-        Constants.CP_ShopMen_POM.handleCookiesAndPopups();
-        Assert.assertEquals(Constants.key.visibleWaitCondition(Constants.CP_ShopMen_POM.getCP_Mens_Jacket_RadioBtn(),"4"),"PASSED","ERROR >> getCP_Mens_Jacket_RadioBtn visibleWaitCondition failed");
-        Assert.assertEquals(Constants.key.javascrpiptScroll(Constants.CP_ShopMen_POM.getCP_Mens_Jacket_RadioBtn(),""),"PASSED","ERROR >> getCP_Mens_Jacket_RadioBtn javascrpiptScroll failed");
-        Assert.assertEquals(Constants.key.KeyboardAction(Constants.CP_ShopMen_POM.getCP_Mens_NextPage(),"upArrow"),"PASSED","ERROR >> getCP_Mens_Jacket_RadioBtn KeyboardAction failed");
-        Assert.assertEquals(Constants.key.KeyboardAction(Constants.CP_ShopMen_POM.getCP_Mens_NextPage(),"upArrow"),"PASSED","ERROR >> getCP_Mens_Jacket_RadioBtn KeyboardAction failed");
-        Assert.assertEquals(Constants.key.KeyboardAction(Constants.CP_ShopMen_POM.getCP_Mens_NextPage(),"upArrow"),"PASSED","ERROR >> getCP_Mens_Jacket_RadioBtn KeyboardAction failed");
-        Assert.assertEquals(Constants.key.KeyboardAction(Constants.CP_ShopMen_POM.getCP_Mens_NextPage(),"upArrow"),"PASSED","ERROR >> getCP_Mens_Jacket_RadioBtn KeyboardAction failed");
-        Assert.assertEquals(Constants.key.click(Constants.CP_ShopMen_POM.getCP_Mens_Jacket_RadioBtn(),""),"PASSED","ERROR >> getCP_Mens_Jacket_RadioBtn clicked failed");
-        Constants.CP_ShopMen_POM.saveProductListData();
+        Constants.getCP_ShopMen_POM().setDriver();
+        String mensPrdPgTitle=Constants.getConfig().getProperty("CP_MensProductPageTitle");
+        Assert.assertEquals(Constants.getKey().switchToWindow(mensPrdPgTitle),"PASSED","ERROR >> Child window switch failed");
+        Constants.getCP_ShopMen_POM().handleCookiesAndPopups();
+        Assert.assertEquals(Constants.getKey().visibleWaitCondition(Constants.getCP_ShopMen_POM().getCP_Mens_Jacket_RadioBtn(),"4"),"PASSED","ERROR >> getCP_Mens_Jacket_RadioBtn visibleWaitCondition failed");
+        Assert.assertEquals(Constants.getKey().javascrpiptScroll(Constants.getCP_ShopMen_POM().getCP_Mens_Jacket_RadioBtn(),""),"PASSED","ERROR >> getCP_Mens_Jacket_RadioBtn javascrpiptScroll failed");
+        Assert.assertEquals(Constants.getKey().KeyboardAction(Constants.getCP_ShopMen_POM().getCP_Mens_NextPage(),"upArrow"),"PASSED","ERROR >> getCP_Mens_Jacket_RadioBtn KeyboardAction failed");
+        Assert.assertEquals(Constants.getKey().KeyboardAction(Constants.getCP_ShopMen_POM().getCP_Mens_NextPage(),"upArrow"),"PASSED","ERROR >> getCP_Mens_Jacket_RadioBtn KeyboardAction failed");
+        Assert.assertEquals(Constants.getKey().KeyboardAction(Constants.getCP_ShopMen_POM().getCP_Mens_NextPage(),"upArrow"),"PASSED","ERROR >> getCP_Mens_Jacket_RadioBtn KeyboardAction failed");
+        Assert.assertEquals(Constants.getKey().KeyboardAction(Constants.getCP_ShopMen_POM().getCP_Mens_NextPage(),"upArrow"),"PASSED","ERROR >> getCP_Mens_Jacket_RadioBtn KeyboardAction failed");
+        Assert.assertEquals(Constants.getKey().click(Constants.getCP_ShopMen_POM().getCP_Mens_Jacket_RadioBtn(),""),"PASSED","ERROR >> getCP_Mens_Jacket_RadioBtn clicked failed");
+        Constants.getCP_ShopMen_POM().saveProductListData();
     }
 
     @Then("I store each Price, Title, and Top Seller message of the {string} and {string} in a text file")
     public void iStoreEachPriceTitleAndTopSellerMessageOfTheAndInATextFile(String ShopMenuCategory, String ProductType) throws Exception {
         if(ShopMenuCategory.equalsIgnoreCase("Men's") && ProductType.equalsIgnoreCase("Jackets")){
-            Constants.CP_ShopMen_POM.logProductListDataToFile();
+            Constants.getCP_ShopMen_POM().logProductListDataToFile();
         }
         else if(ShopMenuCategory.equalsIgnoreCase("Women's") && ProductType.equalsIgnoreCase("Jackets")){
-            //Add your criteria here
+            //Future criteria to be added
         }
     }
 
     @And("I attach the generated text file to the test report")
     public void iAttachTheGeneratedTextFileToTheTestReport() {
         ExtentTest test = ExtentCucumberAdapter.getCurrentStep();
-        test.log(Status.INFO, "Attached file: <a href='" +System.getProperty("user.dir")+ File.separator+"test-output"+File.separator+"logDump"+File.separator+"testLogs"+Constants.genericString+".txt"+ "'>Download productDetails.txt</a>");
+        test.log(Status.INFO, "Attached file: <a href='" +System.getProperty("user.dir")+ File.separator+"test-output"+File.separator+"logDump"+File.separator+"testLogs"+Constants.getGenericString()+".txt"+ "'>Check Log file</a>");
 
     }
 }

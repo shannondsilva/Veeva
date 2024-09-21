@@ -11,10 +11,7 @@ import io.cucumber.java.Scenario;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 import org.testng.Reporter;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.*;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -33,11 +30,18 @@ import static com.example.utils.Reusables.LogCapture;
                 "json:target/cucumber-reports/cucumber.json",
                 "junit:target/cucumber-reports/cucumber.xml",
                 "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"
-        },
-        tags = "@CP_1 or @CP_2"
+        }
+//        tags = "@CP_1"
 
 )
 public class testNGtestRunner extends AbstractTestNGCucumberTests {
+
+    @BeforeClass(alwaysRun = true)
+    @Parameters({"browser"})
+    public void setup(String browser) {
+        Constants.setBrowser(browser);
+    }
+//    mvn test -Dcucumber.filter.tags="@smoke and not @ignore"
 
     @BeforeClass
     public void clearLogDump() {
@@ -62,6 +66,13 @@ public class testNGtestRunner extends AbstractTestNGCucumberTests {
                 file.delete(); // Delete file or empty folder
             }
         }
+    }
+
+//    Commenting this, since need to limit parallel executions to <test> block
+    @Override
+    @DataProvider(parallel = true)  // Enable parallel execution
+    public Object[][] scenarios() {
+        return super.scenarios();
     }
 
 }
