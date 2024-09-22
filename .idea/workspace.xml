@@ -6,7 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="9337e64d-04e2-4223-bb9d-8b60a5a8b503" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/featureFileDirectory/CoreProdutTests.feature" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/featureFileDirectory/CoreProdutTests.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/config.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/app.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/app.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/utils/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/utils/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/stepDefinations/stepDefination.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/stepDefinations/stepDefination.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/utils/Constants.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/utils/Constants.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/cucumber-reports/cucumber.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/cucumber-reports/cucumber.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/cucumber-reports/cucumber.json" beforeDir="false" afterPath="$PROJECT_DIR$/target/cucumber-reports/cucumber.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/cucumber-reports/cucumber.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/cucumber-reports/cucumber.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/example/stepDefinations/stepDefination.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/example/stepDefinations/stepDefination.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-output/ExtentReport.html" beforeDir="false" afterPath="$PROJECT_DIR$/test-output/ExtentReport.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/textng.xml" beforeDir="false" afterPath="$PROJECT_DIR$/textng.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,9 +52,14 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/shann/IdeaProjects/SeleniumVFramework-main"
+    "last_opened_file_path": "C:/Users/shann/IdeaProjects/Veeva_Shannon_Sub/src/test/featureFileDirectory"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\shann\IdeaProjects\Veeva_Shannon_Sub\src\test\featureFileDirectory" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="C:/Users/shann/IdeaProjects/Veeva_Shannon_Sub/textng.xml" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="testMVN" />
@@ -89,8 +104,18 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/example/stepDefinations/stepDefination.java</url>
-          <line>126</line>
+          <line>132</line>
           <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/example/stepDefinations/stepDefination.java</url>
+          <line>154</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/utils/Reusables.java</url>
+          <line>137</line>
+          <option name="timeStamp" value="22" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

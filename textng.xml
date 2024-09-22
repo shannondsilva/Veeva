@@ -2,15 +2,22 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="NBA Website test" parallel="tests">
 
-    <test name="Core Product Test 1">
-        <parameter name="cucumber.filter.tags" value="@CP_1" />
-        <classes>
-            <class name="com.example.runner.testNGtestRunner" />
-        </classes>
-    </test>
+<!--    <test name="Core Product Test 1">-->
+<!--        <parameter name="cucumber.filter.tags" value="@CP_1" />-->
+<!--        <classes>-->
+<!--            <class name="com.example.runner.testNGtestRunner" />-->
+<!--        </classes>-->
+<!--    </test>-->
 
-    <test name="Core Product Test 2">
-        <parameter name="cucumber.filter.tags" value="@CP_2" />
+<!--    <test name="Core Product Test 2">-->
+<!--        <parameter name="cucumber.filter.tags" value="@CP_2" />-->
+<!--        <classes>-->
+<!--            <class name="com.example.runner.testNGtestRunner" />-->
+<!--        </classes>-->
+<!--    </test>-->
+
+    <test name="Derived Product 2 Test 1">
+        <parameter name="cucumber.filter.tags" value="@DP2_1" />
         <classes>
             <class name="com.example.runner.testNGtestRunner" />
         </classes>
