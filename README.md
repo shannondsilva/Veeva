@@ -1,5 +1,5 @@
 Framework Details:
-This framework is highly parameterised. Apart from the general TestRunner, feature and stepDefination, below are some key modules to help understand better this framework
+This BDD Cucumber framework is highly parameterised. Apart from the general TestRunner, feature and stepDefination, below are some key modules to help understand better this framework
 
 Constant.java <-- This class present at \src\main\java\com\example\utils is used to store all global variables that may be needed
 to pass on from one stepDefination method to another. These variable are not only limited to String, int, Boolean, etc. but we could
