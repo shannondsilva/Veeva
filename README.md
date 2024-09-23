@@ -18,7 +18,7 @@ Feature testcases description:
 ●	Test Case 2: for CP --> Count video feeds based on time criteria
 ●	Test Case 3: for DP2 --> Count the number of hyperlinks in the footer section and find the duplicates. Store this information in a csv file.
 
-3) These 2 testcases have been added to a feature file named "CoreProductTests.feature" , present in \src\test\featureFileDirectory
+3) These 3 testcases have been added to a feature file named "CoreProductTests.feature" and "DerivedProducts2.feature", present in \src\test\featureFileDirectory
 4) We could run these testcases on different browsers by mentioning it in the example tag.
 
 How to run:
