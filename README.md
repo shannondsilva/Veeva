@@ -13,7 +13,7 @@ Page Object classes <-- The classes present under \src\main\java\pageObjects are
 
 
 Feature testcases description:
-1) Currently below 2 testcase are automated for Core products and 1 for DP2 products
+1) Currently below 3 testcase are automated for Core products and 1 for DP2 products
 ●	Test Case 1: for CP --> Store product information in log file
 ●	Test Case 2: for CP --> Count video feeds based on time criteria
 ●	Test Case 3: for DP2 --> Count the number of hyperlinks in the footer section and find the duplicates. Store this information in a csv file.
