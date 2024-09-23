@@ -13,12 +13,13 @@ Page Object classes <-- The classes present under \src\main\java\pageObjects are
 
 
 Feature testcases description:
-1) Currently below 2 testcase are automated for Core products
+1) Currently below 2 testcase are automated for Core products and 1 for DP2 products
 ●	Test Case 1: for CP --> Store product information in log file
 ●	Test Case 2: for CP --> Count video feeds based on time criteria
+●	Test Case 3: for DP2 --> Count the number of hyperlinks in the footer section and find the duplicates. Store this information in a csv file.
 
-2) These 2 testcases have been added to a feature file named "CoreProductTests.feature" , present in \src\test\featureFileDirectory
-3) We could run these testcases on different browsers by mentioning it in the example tag.
+3) These 2 testcases have been added to a feature file named "CoreProductTests.feature" , present in \src\test\featureFileDirectory
+4) We could run these testcases on different browsers by mentioning it in the example tag.
 
 How to run:
 You could run these testcases via:
