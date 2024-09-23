@@ -1,0 +1,7 @@
+com\example\utils\Base.class
+com\example\utils\Reusables.class
+pageObjects\MensShoppingMenu.class
+pageObjects\CoreProductLandingPage.class
+com\example\utils\Constants.class
+pageObjects\NewsAndFeaturesPage.class
+pageObjects\DerivedProduct2LandingPage.class

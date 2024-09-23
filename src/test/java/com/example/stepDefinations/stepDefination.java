@@ -129,8 +129,7 @@ public class stepDefination  {
         switch (MenuCategory){
             case "News & Features":
                 Assert.assertEquals(Constants.getKey().visibleWaitCondition(Constants.getCP_POM().getCP_NewsAndFeaturesLink(),"4"),"PASSED","ERROR >> getCP_ShopMenu_Mens clicked failed");
-                Thread.sleep(3000);
-                Assert.assertEquals(Constants.getKey().click(Constants.getCP_POM().getCP_NewsAndFeaturesLink(),""),"PASSED","ERROR >> getCP_ShopMenu_Mens clicked failed");
+                Assert.assertEquals(Constants.getKey().javascrpiptClick(Constants.getCP_POM().getCP_NewsAndFeaturesLink(),""),"PASSED","ERROR >> getCP_ShopMenu_Mens clicked failed");
                 break;
             case "Stay Connected":
                 //Future implementations here
