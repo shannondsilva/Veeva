@@ -13,8 +13,8 @@ Feature: Testcases for checks on the Core Product functionality
     Examples:
       | browser | URL    | MenuCategory | ProductType |
       | chrome  | CP_URL | Men's        | Jackets     |
-#      | firefox | CP_URL | Women's      | Footwear    |
-#      | edge    | CP_URL | Kids         | Hats        |
+      | firefox | CP_URL | Women's      | Footwear    |
+      | edge    | CP_URL | Kids         | Hats        |
 
 
   @CP_2
@@ -28,9 +28,9 @@ Feature: Testcases for checks on the Core Product functionality
     Examples:
       | browser | URL    | MenuCategory    | operator | days |
       | chrome  | CP_URL | News & Features | >=       | 3    |
-#      | firefox | CP_URL | News & Features | >        | 4    |
-#      | chrome  | CP_URL | News & Features | =        | 1    |
-#      | edge    | CP_URL | News & Features | >        | 30   |
-#      | firefox | CP_URL | News & Features | !=       | 4    |
-#      | firefox | CP_URL | News & Features | ==       | 4    |
+      | firefox | CP_URL | News & Features | >        | 4    |
+      | chrome  | CP_URL | News & Features | =        | 1    |
+      | edge    | CP_URL | News & Features | >        | 30   |
+      | firefox | CP_URL | News & Features | !=       | 4    |
+      | firefox | CP_URL | News & Features | ==       | 4    |
 
