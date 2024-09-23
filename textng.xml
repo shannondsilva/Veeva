@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="NBA Website test" parallel="tests">
+<suite name="NBA Website test" parallel="tests" thread-count="3">
 
+    <!-- Test for Core Product Scenario CP_1 -->
     <test name="Core Product Test 1">
         <parameter name="cucumber.filter.tags" value="@CP_1" />
         <classes>
@@ -9,8 +10,17 @@
         </classes>
     </test>
 
+    <!-- Test for Core Product Scenario CP_2 -->
     <test name="Core Product Test 2">
         <parameter name="cucumber.filter.tags" value="@CP_2" />
+        <classes>
+            <class name="com.example.runner.testNGtestRunner" />
+        </classes>
+    </test>
+
+    <!-- Test for Derived Product Scenario DP2_1 -->
+    <test name="Derived Product 2 Test 1">
+        <parameter name="cucumber.filter.tags" value="@DP2_1" />
         <classes>
             <class name="com.example.runner.testNGtestRunner" />
         </classes>

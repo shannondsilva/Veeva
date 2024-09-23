@@ -115,6 +115,12 @@ public class stepDefination  {
         test.log(Status.INFO, "Attached file: <a href='" +System.getProperty("user.dir")+ File.separator+"test-output"+File.separator+"logDump"+File.separator+"testLogs"+Constants.getGenericString()+".txt"+ "'>Check Log file</a>");
     }
 
+    @And("I attach the generated csv file to the test report")
+    public void iAttachTheGeneratedcsvFileToTheTestReport() {
+        ExtentTest test = ExtentCucumberAdapter.getCurrentStep();
+        test.log(Status.INFO, "Attached file: <a href='" +System.getProperty("user.dir")+ File.separator+"test-output"+File.separator+"logDump"+File.separator+Constants.getGenericString()+""+ "'>Check Log file</a>");
+    }
+
     @And("I navigate to the three dotted Menu and select {string} category")
     public void iNavigateToTheThreeDottedMenuAndSelectCategory(String MenuCategory) throws Exception {
 
@@ -123,8 +129,7 @@ public class stepDefination  {
         switch (MenuCategory){
             case "News & Features":
                 Assert.assertEquals(Constants.getKey().visibleWaitCondition(Constants.getCP_POM().getCP_NewsAndFeaturesLink(),"4"),"PASSED","ERROR >> getCP_ShopMenu_Mens clicked failed");
-                Thread.sleep(3000);
-                Assert.assertEquals(Constants.getKey().click(Constants.getCP_POM().getCP_NewsAndFeaturesLink(),""),"PASSED","ERROR >> getCP_ShopMenu_Mens clicked failed");
+                Assert.assertEquals(Constants.getKey().javascrpiptClick(Constants.getCP_POM().getCP_NewsAndFeaturesLink(),""),"PASSED","ERROR >> getCP_ShopMenu_Mens clicked failed");
                 break;
             case "Stay Connected":
                 //Future implementations here
@@ -140,5 +145,27 @@ public class stepDefination  {
         Constants.getCP_NewsAndFeatures_POM().setDriver();
         Constants.getCP_NewsAndFeatures_POM().countVideoFeeds(operator, Integer.parseInt(days));
         Constants.getKey().logListDataToFile();
+    }
+
+    @And("I scroll to the bottom of the page to the footer section")
+    public void iScrollToTheBottomOfThePageToTheFooterSection() throws Exception {
+
+        Assert.assertEquals(Constants.getKey().visibleWaitCondition(Constants.getDP2_LandingPage_POM().getDP2_Secondary_Menu(), "4"),"PASSED","ERROR >> MoveToElement failed");
+//        Assert.assertEquals(Constants.getKey().KeyboardAction(Constants.getDP2_LandingPage_POM().getDP2_Footer(), "end"),"PASSED","ERROR >> KeyboardAction getDP2_LandingPage_POM failed");
+        Assert.assertEquals(Constants.getKey().javascrpiptScroll(Constants.getDP2_LandingPage_POM().getDP2_Secondary_Menu(), ""),"PASSED","ERROR >> javascrpiptScroll getDP2_LandingPage_POM failed");
+
+    }
+
+    @And("I count the total hyperlinks in the DP footer section save these links into a csv file highlighting duplicates")
+    public void iCountTheTotalHyperlinksInTheDPFooterSectionSaveTheseLinksIntoACsvFileHighlightingDeplucates() {
+        Constants.getDP2_LandingPage_POM().countDP2FooterAndSave();
+    }
+
+    @When("I am on the DP Home Page and do some quick element loaded validations")
+    public void iAmOnTheDPHomePageAndDoSomeQuickElementLoadedValidations() {
+        Constants.getDP2_LandingPage_POM().setDriver();
+        Assert.assertEquals(Constants.getKey().visibleWaitCondition(Constants.getDP2_LandingPage_POM().getDP2_Secondary_Menu(),"3"),"PASSED","ERROR >> Main menu NOT visible");
+        Assert.assertEquals(Constants.getKey().visibleWaitCondition(Constants.getDP2_LandingPage_POM().getDP2_Logo(),"3"),"PASSED","ERROR >> Logo NOT visible");
+        Assert.assertEquals(Constants.getKey().visibleWaitCondition(Constants.getDP2_LandingPage_POM().getDP2_Footer(),"3"),"PASSED","ERROR >> Footer NOT visible");
     }
 }

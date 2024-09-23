@@ -38,10 +38,19 @@ public class Reusables {
             options.setExperimentalOption("prefs", prefs);
 
             switch (data.toLowerCase()) {
-                case "chrome" -> Constants.setDriver(new ChromeDriver(options));
-                case "edge" -> Constants.setDriver(new EdgeDriver());
-                case "firefox" -> Constants.setDriver(new FirefoxDriver());
+                case "chrome":
+                    Constants.setDriver(new ChromeDriver(options));
+                    break;
+                case "edge":
+                    Constants.setDriver(new EdgeDriver());
+                    break;
+                case "firefox":
+                    Constants.setDriver(new FirefoxDriver());
+                    break;
+                default:
+                    throw new IllegalArgumentException("Unknown browser: " + data);
             }
+
             Constants.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
             Constants.getDriver().manage().window().maximize();
             Constants.getDriver().get(value);
@@ -229,6 +238,16 @@ public class Reusables {
     public String javascrpiptScroll(WebElement element, String data) throws Exception {
         try {
             String js = "arguments[0].scrollIntoView();";
+            ((JavascriptExecutor) Constants.getDriver()).executeScript(js, element);
+        } catch (Exception e) {
+            return Constants.FailedBlock + "object does not exist " + e.getMessage();
+        }
+        return Constants.PassedBlock;
+    }
+
+    public String javascrpiptClick(WebElement element, String data) throws Exception {
+        try {
+            String js = "arguments[0].click();";
             ((JavascriptExecutor) Constants.getDriver()).executeScript(js, element);
         } catch (Exception e) {
             return Constants.FailedBlock + "object does not exist " + e.getMessage();

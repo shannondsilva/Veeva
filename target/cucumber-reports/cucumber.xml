@@ -1,23 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Cucumber" time="18.541" tests="1" skipped="0" failures="1" errors="0">
-<testcase classname="Testcases for checks on the Core Product functionality" name="TC2-To count the overall video feeds and the feeds less than 3d - #1.1" time="18.36">
-<failure type="java.lang.AssertionError" message="ERROR &gt;&gt; getCP_ShopMenu_Mens clicked failed expected [PASSED] but found [FAILED]">
-<![CDATA[java.lang.AssertionError: ERROR >> getCP_ShopMenu_Mens clicked failed expected [PASSED] but found [FAILED]
-	at org.testng.Assert.fail(Assert.java:111)
-	at org.testng.Assert.failNotEquals(Assert.java:1578)
-	at org.testng.Assert.assertEqualsImpl(Assert.java:150)
-	at org.testng.Assert.assertEquals(Assert.java:132)
-	at org.testng.Assert.assertEquals(Assert.java:656)
-	at com.example.stepDefinations.stepDefination.iNavigateToTheThreeDottedMenuAndSelectCategory(stepDefination.java:127)
-	at ✽.I navigate to the three dotted Menu and select "News & Features" category(file:///C:/Users/shann/IdeaProjects/Veeva_Shannon_Sub/src/test/featureFileDirectory/CoreProdutTests.feature:24)
-]]>
-</failure>
+<testsuite name="Cucumber" time="72.812" tests="1" skipped="0" failures="0" errors="0">
+<testcase classname="Testcases for checks on the Core Product functionality" name="TC1-Extract Jacket details from the Shop Menu - #1.1" time="72.636">
 <system-out><![CDATA[
 Given User opens the "chrome" and loads the "CP_URL"........................passed
 When I am on the CP Home Page and do some quick element loaded validations..passed
-And I navigate to the three dotted Menu and select "News & Features" category.failed
-Then I navigate to the News page and count all video feeds ">=" "3".........skipped
-And I attach the generated text file to the test report.....................skipped
+And I navigate to the Shop Menu and select "Men's" category.................passed
+And I find all "Jackets" from all paginated pages...........................passed
+Then I store each Price, Title, and Top Seller message of the "Men's" and "Jackets" in a text file.passed
+And I attach the generated text file to the test report.....................passed
 ]]></system-out>
 </testcase>
 </testsuite>
