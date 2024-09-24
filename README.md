@@ -25,6 +25,8 @@ How to run:
 You could run these testcases via:
 1) testng.xml present at root level.
 2) testNGRunner class present at \src\test\java\com\example\runner (Here you would need to add another tag attribute)
+3) You'll need Java 11 versions on your machine.
+4) Maven version 3.8.1
 
 
 Where to see Reports:
